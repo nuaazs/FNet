@@ -5,7 +5,7 @@ import monai
 import numpy as np
 import ants
 from nets import Net
-from dataset import getDataLoader
+from dataset import getDataLoader,getDataLoader_ddf
 from torch.nn import MSELoss,L1Loss
 from monai.losses import MaskedLoss
 torch.multiprocessing.set_sharing_strategy('file_system')
@@ -44,7 +44,10 @@ os.makedirs(board_path,exist_ok=True)
 os.makedirs(f"./checkpoints/{args.name}/",exist_ok=True)
 os.makedirs(f"./npy/{args.name}/",exist_ok=True)
 writer = SummaryWriter(board_path)
-train_loader,val_loader = getDataLoader(batch_size=args.batch_size,num_workers=args.num_workers,istry=args.istry)
+if args.dataset_type=='ct':
+    train_loader,val_loader = getDataLoader(batch_size=args.batch_size,num_workers=args.num_workers,istry=args.istry)
+elif args.dataset_type=='ddf':
+    train_loader,val_loader = getDataLoader_ddf(batch_size=args.batch_size,num_workers=args.num_workers,istry=args.istry)
 net = Net()
 print('# generator parameters:', sum(param.numel() for param in net.parameters()))
 net = net.cuda()
@@ -75,8 +78,6 @@ for epoch in range(args.load,args.load+args.epochs):
             step += 1
             optimizer.zero_grad()
             t0_image = batch_data["t0_image"].cuda()
-
-            # t1_trans = batch_data["t1_trans"].cuda()
             results = net(t0_image)
             ddf1,ddf2,ddf3,ddf4,ddf5,t1,t2,t3,t4,t5 = results
             img_results = [t1,t2,t3,t4,t5]
@@ -84,26 +85,35 @@ for epoch in range(args.load,args.load+args.epochs):
             if step == 1:
                 show_results(writer,img_results,batch_data,epoch,"train")
                 show_error(writer,img_results,batch_data,epoch,"train")
-
+                show_mask(writer,img_results,batch_data,epoch,"train")
             if not args.B2A:
-                loss_ddf1 = image_loss(ddf1,batch_data["t1_trans"].cuda())
-                loss_ddf2 = image_loss(ddf2,batch_data["t2_trans"].cuda())
-                loss_ddf3 = image_loss(ddf3,batch_data["t3_trans"].cuda())
-                loss_ddf4 = image_loss(ddf4,batch_data["t4_trans"].cuda())
-                loss_ddf5 = image_loss(ddf5,batch_data["t5_trans"].cuda())
+                loss_t1 = image_loss(t1,batch_data["t1_image"].cuda())
+                loss_t2 = image_loss(t2,batch_data["t2_image"].cuda())
+                loss_t3 = image_loss(t3,batch_data["t3_image"].cuda())
+                loss_t4 = image_loss(t4,batch_data["t4_image"].cuda())
+                loss_t5 = image_loss(t5,batch_data["t5_image"].cuda())
+                mask_loss_t1 = mask_loss(t1,batch_data["t1_image"].cuda(),batch_data["t1_mask"].cuda())
+                mask_loss_t2 = mask_loss(t2,batch_data["t2_image"].cuda(),batch_data["t2_mask"].cuda())
+                mask_loss_t3 = mask_loss(t3,batch_data["t3_image"].cuda(),batch_data["t3_mask"].cuda())
+                mask_loss_t4 = mask_loss(t4,batch_data["t4_image"].cuda(),batch_data["t4_mask"].cuda())
+                mask_loss_t5 = mask_loss(t5,batch_data["t5_image"].cuda(),batch_data["t5_mask"].cuda())
             else:
-                loss_ddf1 = image_loss(ddf1,batch_data["t9_trans"].cuda())
-                loss_ddf2 = image_loss(ddf2,batch_data["t8_trans"].cuda())
-                loss_ddf3 = image_loss(ddf3,batch_data["t7_trans"].cuda())
-                loss_ddf4 = image_loss(ddf4,batch_data["t6_trans"].cuda())
-                loss_ddf5 = image_loss(ddf5,batch_data["t5_trans"].cuda())
-
-            epoch_loss_t1 += loss_ddf1.item()
-            epoch_loss_t2 += loss_ddf2.item()
-            epoch_loss_t3 += loss_ddf3.item()
-            epoch_loss_t4 += loss_ddf4.item()
-            epoch_loss_t5 += loss_ddf5.item()
-            loss = loss_ddf1+loss_ddf2+loss_ddf3+loss_ddf4+loss_ddf5
+                loss_t1 = image_loss(t1,batch_data["t9_image"].cuda())
+                loss_t2 = image_loss(t2,batch_data["t8_image"].cuda())
+                loss_t3 = image_loss(t3,batch_data["t7_image"].cuda())
+                loss_t4 = image_loss(t4,batch_data["t6_image"].cuda())
+                loss_t5 = image_loss(t5,batch_data["t5_image"].cuda())
+                mask_loss_t1 = mask_loss(t1,batch_data["t9_image"].cuda(),batch_data["t9_mask"].cuda())
+                mask_loss_t2 = mask_loss(t2,batch_data["t8_image"].cuda(),batch_data["t8_mask"].cuda())
+                mask_loss_t3 = mask_loss(t3,batch_data["t7_image"].cuda(),batch_data["t7_mask"].cuda())
+                mask_loss_t4 = mask_loss(t4,batch_data["t6_image"].cuda(),batch_data["t6_mask"].cuda())
+                mask_loss_t5 = mask_loss(t5,batch_data["t5_image"].cuda(),batch_data["t5_mask"].cuda())
+            epoch_loss_t1 += loss_t1.item() + mask_loss_t1.item()*args.mask_factor
+            epoch_loss_t2 += loss_t2.item() + mask_loss_t2.item()*args.mask_factor
+            epoch_loss_t3 += loss_t3.item() + mask_loss_t3.item()*args.mask_factor
+            epoch_loss_t4 += loss_t4.item() + mask_loss_t4.item()*args.mask_factor
+            epoch_loss_t5 += loss_t5.item() + mask_loss_t5.item()*args.mask_factor
+            loss = loss_t1+loss_t2+loss_t3+loss_t4+loss_t5
             loss.backward()
             optimizer.step()
         epoch_loss_t1 /= step
@@ -137,21 +147,23 @@ for epoch in range(args.load,args.load+args.epochs):
                     if step == 1:
                         show_results(writer,img_results,batch_data,epoch,"val_1")
                         show_error(writer,img_results,batch_data,epoch,"val_1")
-
+                        show_mask(writer,img_results,batch_data,epoch,"val_1")
                     if step == 2:
                         show_results(writer,img_results,batch_data,epoch,"val_2")
                         show_error(writer,img_results,batch_data,epoch,"val_2")
-
+                        show_mask(writer,img_results,batch_data,epoch,"val_2")
                     if step == 3:
                         show_results(writer,img_results,batch_data,epoch,"val_3")
                         show_error(writer,img_results,batch_data,epoch,"val_3")
+                        show_mask(writer,img_results,batch_data,epoch,"val_3")
                     if step == 4:
                         show_results(writer,img_results,batch_data,epoch,"val_4")
                         show_error(writer,img_results,batch_data,epoch,"val_4")
+                        show_mask(writer,img_results,batch_data,epoch,"val_4")
                     if step == 5:
                         show_results(writer,img_results,batch_data,epoch,"val_5")
                         show_error(writer,img_results,batch_data,epoch,"val_5")
-
+                        show_mask(writer,img_results,batch_data,epoch,"val_5")
                     if (epoch + 1) % args.save_nii_interval == 0:
                         if not args.B2A:
                             save_nii(t1,epoch+1,batch_data["pid"][0]+'_t1',save_npy_path=f"./npy/{args.name}/")
@@ -175,26 +187,33 @@ for epoch in range(args.load,args.load+args.epochs):
                             save_nii(batch_data["t7_image"],epoch+1,batch_data["pid"][0]+'_t7_real',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t6_image"],epoch+1,batch_data["pid"][0]+'_t6_real',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t5_image"],epoch+1,batch_data["pid"][0]+'_t5_real',save_npy_path=f"./npy/{args.name}/")
-                    
-                    
                     if not args.B2A:
-                        loss_ddf1 = image_loss(ddf1,batch_data["t1_trans"].cuda())
-                        loss_ddf2 = image_loss(ddf2,batch_data["t2_trans"].cuda())
-                        loss_ddf3 = image_loss(ddf3,batch_data["t3_trans"].cuda())
-                        loss_ddf4 = image_loss(ddf4,batch_data["t4_trans"].cuda())
-                        loss_ddf5 = image_loss(ddf5,batch_data["t5_trans"].cuda())
+                        loss_t1 = image_loss(t1,batch_data["t1_image"].cuda())
+                        loss_t2 = image_loss(t2,batch_data["t2_image"].cuda())
+                        loss_t3 = image_loss(t3,batch_data["t3_image"].cuda())
+                        loss_t4 = image_loss(t4,batch_data["t4_image"].cuda())
+                        loss_t5 = image_loss(t5,batch_data["t5_image"].cuda())
+                        mask_loss_t1 = mask_loss(t1,batch_data["t1_image"].cuda(),batch_data["t1_mask"].cuda())
+                        mask_loss_t2 = mask_loss(t2,batch_data["t2_image"].cuda(),batch_data["t2_mask"].cuda())
+                        mask_loss_t3 = mask_loss(t3,batch_data["t3_image"].cuda(),batch_data["t3_mask"].cuda())
+                        mask_loss_t4 = mask_loss(t4,batch_data["t4_image"].cuda(),batch_data["t4_mask"].cuda())
+                        mask_loss_t5 = mask_loss(t5,batch_data["t5_image"].cuda(),batch_data["t5_mask"].cuda())
                     else:
-                        loss_ddf1 = image_loss(ddf1,batch_data["t9_trans"].cuda())
-                        loss_ddf2 = image_loss(ddf2,batch_data["t8_trans"].cuda())
-                        loss_ddf3 = image_loss(ddf3,batch_data["t7_trans"].cuda())
-                        loss_ddf4 = image_loss(ddf4,batch_data["t6_trans"].cuda())
-                        loss_ddf5 = image_loss(ddf5,batch_data["t5_trans"].cuda())
-                
-                    epoch_loss_t1 += loss_ddf1.item()
-                    epoch_loss_t2 += loss_ddf2.item()
-                    epoch_loss_t3 += loss_ddf3.item()
-                    epoch_loss_t4 += loss_ddf4.item()
-                    epoch_loss_t5 += loss_ddf5.item()
+                        loss_t1 = image_loss(t1,batch_data["t9_image"].cuda())
+                        loss_t2 = image_loss(t2,batch_data["t8_image"].cuda())
+                        loss_t3 = image_loss(t3,batch_data["t7_image"].cuda())
+                        loss_t4 = image_loss(t4,batch_data["t6_image"].cuda())
+                        loss_t5 = image_loss(t5,batch_data["t5_image"].cuda())
+                        mask_loss_t1 = mask_loss(t1,batch_data["t9_image"].cuda(),batch_data["t9_mask"].cuda())
+                        mask_loss_t2 = mask_loss(t2,batch_data["t8_image"].cuda(),batch_data["t8_mask"].cuda())
+                        mask_loss_t3 = mask_loss(t3,batch_data["t7_image"].cuda(),batch_data["t7_mask"].cuda())
+                        mask_loss_t4 = mask_loss(t4,batch_data["t6_image"].cuda(),batch_data["t6_mask"].cuda())
+                        mask_loss_t5 = mask_loss(t5,batch_data["t5_image"].cuda(),batch_data["t5_mask"].cuda())
+                    epoch_loss_t1 += loss_t1.item()  + mask_loss_t1.item()*args.mask_factor
+                    epoch_loss_t2 += loss_t2.item()  + mask_loss_t2.item()*args.mask_factor
+                    epoch_loss_t3 += loss_t3.item()  + mask_loss_t3.item()*args.mask_factor
+                    epoch_loss_t4 += loss_t4.item()  + mask_loss_t4.item()*args.mask_factor
+                    epoch_loss_t5 += loss_t5.item()  + mask_loss_t5.item()*args.mask_factor
                 epoch_loss_t1 /= step
                 epoch_loss_t2 /= step
                 epoch_loss_t3 /= step

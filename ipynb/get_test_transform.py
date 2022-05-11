@@ -27,7 +27,7 @@ def get_transform(input_file, target_file,type_of_transform,save_path):
                 shutil.move(output_file, f"{save_path}/{filename}_Warp.nii.gz")
             if "mat" in output_file:
                 shutil.move(output_file, f"{save_path}/{filename}_GenericAffine.mat")
-            return output_file
+        return output_file
 
 
 files = os.listdir("/home/zhaosheng/4dct_test_nii/")
