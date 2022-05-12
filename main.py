@@ -26,11 +26,9 @@ parser = argparse.ArgumentParser(description='')
 parser.add_argument('--name', type=str, default="tnet",help='')
 parser.add_argument('--batch_size', type=int, default=2,help='')
 parser.add_argument('--num_workers', type=int, default=20,help='')
-parser.add_argument('--epochs', type=int, default=200,help='')
+parser.add_argument('--epochs', type=int, default=100,help='')
 parser.add_argument('--val_interval', type=int, default=1,help='')
-parser.add_argument('--save_interval', type=int, default=20,help='')
-parser.add_argument('--save_nii_interval', type=int, default=20,help='')
-parser.add_argument('--mask_factor', type=int, default=1,help='')
+parser.add_argument('--save_interval', type=int, default=5,help='')
 parser.add_argument('--istry', action='store_true', default=False,help='')
 parser.add_argument('--B2A', action='store_true', default=False,help='')
 parser.add_argument('--load', type=int, default=0,help='')
@@ -129,20 +127,7 @@ for epoch in range(args.load,args.load+args.epochs):
                     ddf1,ddf2,ddf3,ddf4,ddf5= results
 
 
-                    if (epoch + 1) % args.save_nii_interval == 0:
-                        if not args.B2A:
-                            save_nii(batch_data["t1_image"],epoch+1,batch_data["pid"][0]+'_t1_real',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(batch_data["t2_image"],epoch+1,batch_data["pid"][0]+'_t2_real',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(batch_data["t3_image"],epoch+1,batch_data["pid"][0]+'_t3_real',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(batch_data["t4_image"],epoch+1,batch_data["pid"][0]+'_t4_real',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(batch_data["t5_image"],epoch+1,batch_data["pid"][0]+'_t5_real',save_npy_path=f"./npy/{args.name}/")
-                        else:
-                            save_nii(batch_data["t9_image"],epoch+1,batch_data["pid"][0]+'_t9_real',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(batch_data["t8_image"],epoch+1,batch_data["pid"][0]+'_t8_real',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(batch_data["t7_image"],epoch+1,batch_data["pid"][0]+'_t7_real',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(batch_data["t6_image"],epoch+1,batch_data["pid"][0]+'_t6_real',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(batch_data["t5_image"],epoch+1,batch_data["pid"][0]+'_t5_real',save_npy_path=f"./npy/{args.name}/")
-                    
+
                     
                     if not args.B2A:
                         loss_ddf1 = image_loss(ddf1,batch_data["t1_trans"].cuda())

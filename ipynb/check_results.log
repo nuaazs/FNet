@@ -1,0 +1,69 @@
+INFO 2022-05-12 21:06:13,556 - Start -> No.1 352425
+INFO 2022-05-12 21:06:13,556 - 
+	fixed : /dataset1/4dct_0510/resampled/352425_t5_resampled.nii
+	moving: /dataset1/4dct_0510/resampled/352425_t0_resampled.nii
+	ddf_r : /dataset1/4dct_0510/transform/352425_t5_Warp.nii.gz
+	ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_352425_ddf5.npy
+INFO 2022-05-12 21:07:24,664 - 	Left Lung Real: ['352425', 1315982.2667155368]
+INFO 2022-05-12 21:07:24,665 - 	Left Lung Fake: ['352425', 1315982.2667155368]
+INFO 2022-05-12 21:07:24,666 - 	Right Lung Real: ['352425', 1948730.2276390365]
+INFO 2022-05-12 21:07:24,667 - 	Right Lung Fake: ['352425', 2249428.0181763815]
+INFO 2022-05-12 21:12:02,791 - #Start: No.1 355485
+INFO 2022-05-12 21:12:02,792 - 		fixed : /dataset1/4dct_0510/resampled/355485_t5_resampled.nii
+INFO 2022-05-12 21:12:02,792 - 		moving: /dataset1/4dct_0510/resampled/355485_t0_resampled.nii
+INFO 2022-05-12 21:12:02,792 - 		ddf_r : /dataset1/4dct_0510/transform/355485_t5_Warp.nii.gz
+INFO 2022-05-12 21:12:02,792 - 		ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_355485_ddf5.npy
+INFO 2022-05-12 21:13:19,826 - #Start: No.1 351312
+INFO 2022-05-12 21:13:19,827 - 		T1 fixed : /dataset1/4dct_0510/resampled/351312_t1_resampled.nii
+INFO 2022-05-12 21:13:19,827 - 		T1 moving: /dataset1/4dct_0510/resampled/351312_t0_resampled.nii
+INFO 2022-05-12 21:13:19,827 - 		T1 ddf_r : /dataset1/4dct_0510/transform/351312_t1_Warp.nii.gz
+INFO 2022-05-12 21:13:19,827 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_351312_ddf1.npy
+INFO 2022-05-12 21:14:11,426 - 		T2 fixed : /dataset1/4dct_0510/resampled/351312_t2_resampled.nii
+INFO 2022-05-12 21:14:11,427 - 		T2 moving: /dataset1/4dct_0510/resampled/351312_t0_resampled.nii
+INFO 2022-05-12 21:14:11,427 - 		T2 ddf_r : /dataset1/4dct_0510/transform/351312_t2_Warp.nii.gz
+INFO 2022-05-12 21:14:11,428 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_351312_ddf2.npy
+WARNING 2022-05-12 21:14:34,878 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f37cdebaee0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-12 21:14:47,685 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f37302b2700> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-12 21:14:50,964 - 		T3 fixed : /dataset1/4dct_0510/resampled/351312_t3_resampled.nii
+INFO 2022-05-12 21:14:50,966 - 		T3 moving: /dataset1/4dct_0510/resampled/351312_t0_resampled.nii
+INFO 2022-05-12 21:14:50,966 - 		T3 ddf_r : /dataset1/4dct_0510/transform/351312_t3_Warp.nii.gz
+INFO 2022-05-12 21:14:50,966 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_351312_ddf3.npy
+INFO 2022-05-12 21:15:28,355 - 		T4 fixed : /dataset1/4dct_0510/resampled/351312_t4_resampled.nii
+INFO 2022-05-12 21:15:28,356 - 		T4 moving: /dataset1/4dct_0510/resampled/351312_t0_resampled.nii
+INFO 2022-05-12 21:15:28,356 - 		T4 ddf_r : /dataset1/4dct_0510/transform/351312_t4_Warp.nii.gz
+INFO 2022-05-12 21:15:28,356 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_351312_ddf4.npy
+INFO 2022-05-12 21:16:08,765 - 		T5 fixed : /dataset1/4dct_0510/resampled/351312_t5_resampled.nii
+INFO 2022-05-12 21:16:08,766 - 		T5 moving: /dataset1/4dct_0510/resampled/351312_t0_resampled.nii
+INFO 2022-05-12 21:16:08,766 - 		T5 ddf_r : /dataset1/4dct_0510/transform/351312_t5_Warp.nii.gz
+INFO 2022-05-12 21:16:08,767 - 		T5 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_351312_ddf5.npy
+INFO 2022-05-12 21:16:46,075 - 	Left Lung Real: ['351312', 1521041.088264976, 1472452.0916957203, 1436250.0085210276, 1398131.3676055663, 1346287.5051201556]
+INFO 2022-05-12 21:16:46,076 - 		Left Lung Fake: ['351312', 1521041.088264976, 1472452.0916957203, 1436250.0085210276, 1398131.3676055663, 1346287.5051201556]
+INFO 2022-05-12 21:16:46,076 - 		Right Lung Real: ['351312', 2241289.4164592684, 2083965.4519824297, 2016091.386204114, 1965695.4920915528, 1930780.5927519118]
+INFO 2022-05-12 21:16:46,076 - 		Right Lung Fake: ['351312', 2328594.210439965, 2245777.1655058004, 2194342.600253956, 2158694.8682843708, 2160407.83619647]
+INFO 2022-05-12 21:19:17,271 - #Start: No.1 353643
+INFO 2022-05-12 21:19:17,272 - 		T1 fixed : /dataset1/4dct_0510/resampled/353643_t1_resampled.nii
+INFO 2022-05-12 21:19:17,272 - 		T1 moving: /dataset1/4dct_0510/resampled/353643_t0_resampled.nii
+INFO 2022-05-12 21:19:17,272 - 		T1 ddf_r : /dataset1/4dct_0510/transform/353643_t1_Warp.nii.gz
+INFO 2022-05-12 21:19:17,272 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_353643_ddf1.npy
+INFO 2022-05-12 21:20:08,772 - 		T2 fixed : /dataset1/4dct_0510/resampled/353643_t2_resampled.nii
+INFO 2022-05-12 21:20:08,773 - 		T2 moving: /dataset1/4dct_0510/resampled/353643_t0_resampled.nii
+INFO 2022-05-12 21:20:08,774 - 		T2 ddf_r : /dataset1/4dct_0510/transform/353643_t2_Warp.nii.gz
+INFO 2022-05-12 21:20:08,774 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_353643_ddf2.npy
+WARNING 2022-05-12 21:20:35,294 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f02ef705f70> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-12 21:20:51,948 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f025031e670> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-12 21:20:55,188 - 		T3 fixed : /dataset1/4dct_0510/resampled/353643_t3_resampled.nii
+INFO 2022-05-12 21:20:55,190 - 		T3 moving: /dataset1/4dct_0510/resampled/353643_t0_resampled.nii
+INFO 2022-05-12 21:20:55,190 - 		T3 ddf_r : /dataset1/4dct_0510/transform/353643_t3_Warp.nii.gz
+INFO 2022-05-12 21:20:55,190 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_353643_ddf3.npy
+INFO 2022-05-12 21:21:32,674 - 		T4 fixed : /dataset1/4dct_0510/resampled/353643_t4_resampled.nii
+INFO 2022-05-12 21:21:32,676 - 		T4 moving: /dataset1/4dct_0510/resampled/353643_t0_resampled.nii
+INFO 2022-05-12 21:21:32,676 - 		T4 ddf_r : /dataset1/4dct_0510/transform/353643_t4_Warp.nii.gz
+INFO 2022-05-12 21:21:32,677 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_353643_ddf4.npy
+INFO 2022-05-12 21:22:14,209 - 		T5 fixed : /dataset1/4dct_0510/resampled/353643_t5_resampled.nii
+INFO 2022-05-12 21:22:14,210 - 		T5 moving: /dataset1/4dct_0510/resampled/353643_t0_resampled.nii
+INFO 2022-05-12 21:22:14,211 - 		T5 ddf_r : /dataset1/4dct_0510/transform/353643_t5_Warp.nii.gz
+INFO 2022-05-12 21:22:14,211 - 		T5 ddf_f : /home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs/39_353643_ddf5.npy
+INFO 2022-05-12 21:22:52,959 - 	Left Lung Real: ['353643', 2401093.6677195597, 2315348.619885403, 2269779.13576023, 2238497.0896932413, 2232725.484431443]
+INFO 2022-05-12 21:22:52,960 - 		Left Lung Fake: ['353643', 2401093.6677195597, 2315348.619885403, 2269779.13576023, 2238497.0896932413, 2232725.484431443]
+INFO 2022-05-12 21:22:52,960 - 		Right Lung Real: ['353643', 2260314.023792423, 2179716.047488581, 2134366.4887801134, 2117688.307161784, 2101164.406097126]
+INFO 2022-05-12 21:22:52,960 - 		Right Lung Fake: ['353643', 2303906.296743472, 2260913.297864629, 2235879.160455042, 2224759.4651768203, 2215020.732109412]
