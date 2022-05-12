@@ -5,7 +5,7 @@ import monai
 import numpy as np
 import ants
 from nets import Net
-from val_dataset import getDataLoader_pre
+from dataset import getDataLoader
 from torch.nn import MSELoss,L1Loss
 from monai.losses import MaskedLoss
 torch.multiprocessing.set_sharing_strategy('file_system')
@@ -51,7 +51,7 @@ os.makedirs(f"./outputs/{args.name}/{load}/images",exist_ok=True)
 os.makedirs(f"./outputs/{args.name}/{load}/ddfs",exist_ok=True)
 
 # DataLoader
-val_loader,val_transforms = getDataLoader_pre(batch_size=1,num_workers=1,istry=args.istry)
+_,val_loader = getDataLoader(batch_size=1,num_workers=1,istry=args.istry,mode="test")
 
 net = Net()
 print('# generator parameters:', sum(param.numel() for param in net.parameters()))
@@ -73,16 +73,18 @@ with eval_mode(net):
         for index,batch_data in enumerate(val_loader):
             step += 1
             t0_image = batch_data["t0_image"].cuda()
-            _shape = batch_data["t0_image"].shape
-            _max = batch_data["t0_image"].max()
-            _min = batch_data["t0_image"].min()
+            # _shape = batch_data["t0_image"].shape
+            # _max = batch_data["t0_image"].max()
+            # _min = batch_data["t0_image"].min()
             results = net(t0_image)
-            ddf1,ddf2,ddf3,ddf4,ddf5,t1,t2,t3,t4,t5 = results
-            batch_data["fake_t1"] = t1
-            batch_data["fake_t2"] = t2
-            batch_data["fake_t3"] = t3
-            batch_data["fake_t4"] = t4
-            batch_data["fake_t5"] = t5
+            ddf1,ddf2,ddf3,ddf4,ddf5 = results
+
+            # ddf1,ddf2,ddf3,ddf4,ddf5,t1,t2,t3,t4,t5 = results
+            # batch_data["fake_t1"] = t1
+            # batch_data["fake_t2"] = t2
+            # batch_data["fake_t3"] = t3
+            # batch_data["fake_t4"] = t4
+            # batch_data["fake_t5"] = t5
 
             batch_data["ddf1"] = ddf1
             batch_data["ddf2"] = ddf2

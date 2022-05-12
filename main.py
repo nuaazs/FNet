@@ -78,12 +78,7 @@ for epoch in range(args.load,args.load+args.epochs):
 
             # t1_trans = batch_data["t1_trans"].cuda()
             results = net(t0_image)
-            ddf1,ddf2,ddf3,ddf4,ddf5,t1,t2,t3,t4,t5 = results
-            img_results = [t1,t2,t3,t4,t5]
-
-            if step == 1:
-                show_results(writer,img_results,batch_data,epoch,"train")
-                show_error(writer,img_results,batch_data,epoch,"train")
+            ddf1,ddf2,ddf3,ddf4,ddf5 = results
 
             if not args.B2A:
                 loss_ddf1 = image_loss(ddf1,batch_data["t1_trans"].cuda())
@@ -131,45 +126,17 @@ for epoch in range(args.load,args.load+args.epochs):
                     step += 1
                     t0_image = batch_data["t0_image"].cuda()
                     results = net(t0_image)
-                    ddf1,ddf2,ddf3,ddf4,ddf5,t1,t2,t3,t4,t5 = results
-                    img_results = [t1,t2,t3,t4,t5]
+                    ddf1,ddf2,ddf3,ddf4,ddf5= results
 
-                    if step == 1:
-                        show_results(writer,img_results,batch_data,epoch,"val_1")
-                        show_error(writer,img_results,batch_data,epoch,"val_1")
-
-                    if step == 2:
-                        show_results(writer,img_results,batch_data,epoch,"val_2")
-                        show_error(writer,img_results,batch_data,epoch,"val_2")
-
-                    if step == 3:
-                        show_results(writer,img_results,batch_data,epoch,"val_3")
-                        show_error(writer,img_results,batch_data,epoch,"val_3")
-                    if step == 4:
-                        show_results(writer,img_results,batch_data,epoch,"val_4")
-                        show_error(writer,img_results,batch_data,epoch,"val_4")
-                    if step == 5:
-                        show_results(writer,img_results,batch_data,epoch,"val_5")
-                        show_error(writer,img_results,batch_data,epoch,"val_5")
 
                     if (epoch + 1) % args.save_nii_interval == 0:
                         if not args.B2A:
-                            save_nii(t1,epoch+1,batch_data["pid"][0]+'_t1',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(t2,epoch+1,batch_data["pid"][0]+'_t2',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(t3,epoch+1,batch_data["pid"][0]+'_t3',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(t4,epoch+1,batch_data["pid"][0]+'_t4',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(t5,epoch+1,batch_data["pid"][0]+'_t5',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t1_image"],epoch+1,batch_data["pid"][0]+'_t1_real',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t2_image"],epoch+1,batch_data["pid"][0]+'_t2_real',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t3_image"],epoch+1,batch_data["pid"][0]+'_t3_real',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t4_image"],epoch+1,batch_data["pid"][0]+'_t4_real',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t5_image"],epoch+1,batch_data["pid"][0]+'_t5_real',save_npy_path=f"./npy/{args.name}/")
                         else:
-                            save_nii(t1,epoch+1,batch_data["pid"][0]+'_t9',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(t2,epoch+1,batch_data["pid"][0]+'_t8',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(t3,epoch+1,batch_data["pid"][0]+'_t7',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(t4,epoch+1,batch_data["pid"][0]+'_t6',save_npy_path=f"./npy/{args.name}/")
-                            save_nii(t5,epoch+1,batch_data["pid"][0]+'_t5',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t9_image"],epoch+1,batch_data["pid"][0]+'_t9_real',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t8_image"],epoch+1,batch_data["pid"][0]+'_t8_real',save_npy_path=f"./npy/{args.name}/")
                             save_nii(batch_data["t7_image"],epoch+1,batch_data["pid"][0]+'_t7_real',save_npy_path=f"./npy/{args.name}/")

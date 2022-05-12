@@ -19,16 +19,27 @@ from monai.transforms import (
 )
 
 
-def getDataLoader(batch_size=1,num_workers=5,istry=False):
+def getDataLoader(batch_size=1,num_workers=5,istry=False,mode="train"):
     data_dir = "/dataset1/4dct_0510/resampled"
     # test_data_dir = "/zhaosheng_data/4dct_4_test"
     transform_dir = "/dataset1/4dct_0510/transform"
     # test_trans_dir = "/dataset1/4dct_4_lungs_test"
     
-    data_inputs = []
+    data_inputs_reample = []
     for item in [_file.split("_")[0] for _file in os.listdir(data_dir) if "t9" in _file]:
-        if item not in data_inputs:
-            data_inputs.append(item)
+        if item not in data_inputs_reample:
+            data_inputs_reample.append(item)
+    
+    data_inputs = []
+    
+    for item in [_file.split("_")[0] for _file in os.listdir(transform_dir) if "t9" in _file]:
+        if (item not in data_inputs) and (item in data_inputs_reample):
+            add = True
+            for tt in range(10):
+                if not os.path.exists(os.path.join(data_dir,f"{item}_t{tt}_resampled.nii")):
+                    add = False
+            if add: 
+                data_inputs.append(item)
 
     data_dicts = [
         {
@@ -59,7 +70,7 @@ def getDataLoader(batch_size=1,num_workers=5,istry=False):
     if istry:
         train_files, val_files = data_dicts[:10], data_dicts[-10:]
     else:
-        train_files, val_files = data_dicts[:-20], data_dicts[-20:]
+        train_files, val_files = data_dicts, data_dicts[-20:]
 
     train_transforms = Compose(
         [
@@ -86,12 +97,16 @@ def getDataLoader(batch_size=1,num_workers=5,istry=False):
             ),
         ]
     )
-    
-    train_ds = CacheDataset(data=train_files, transform=train_transforms,cache_rate=1.0, num_workers=num_workers)
-    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True, num_workers=num_workers)
-    val_ds = CacheDataset(data=val_files, transform=train_transforms,cache_rate=1.0, num_workers=num_workers)
-    val_loader = DataLoader(val_ds, batch_size=1, num_workers=num_workers)
-    return train_loader,val_loader
+    if mode=="train":
+        train_ds = CacheDataset(data=train_files, transform=train_transforms,cache_rate=1.0, num_workers=num_workers)
+        train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True, num_workers=num_workers)
+        val_ds = CacheDataset(data=val_files, transform=train_transforms,cache_rate=1.0, num_workers=num_workers)
+        val_loader = DataLoader(val_ds, batch_size=1, num_workers=num_workers)
+        return train_loader,val_loader
+    else:
+        val_ds = CacheDataset(data=val_files, transform=train_transforms,cache_rate=1.0, num_workers=num_workers)
+        val_loader = DataLoader(val_ds, batch_size=1, num_workers=num_workers)
+        return 0,val_loader
 
 if __name__ == "__main__":
     train_loader,val_loader = getDataLoader(batch_size=1,num_workers=5,istry=True)
