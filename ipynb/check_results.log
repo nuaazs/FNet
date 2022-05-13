@@ -67,3 +67,283 @@ INFO 2022-05-12 21:22:52,959 - 	Left Lung Real: ['353643', 2401093.6677195597, 2
 INFO 2022-05-12 21:22:52,960 - 		Left Lung Fake: ['353643', 2401093.6677195597, 2315348.619885403, 2269779.13576023, 2238497.0896932413, 2232725.484431443]
 INFO 2022-05-12 21:22:52,960 - 		Right Lung Real: ['353643', 2260314.023792423, 2179716.047488581, 2134366.4887801134, 2117688.307161784, 2101164.406097126]
 INFO 2022-05-12 21:22:52,960 - 		Right Lung Fake: ['353643', 2303906.296743472, 2260913.297864629, 2235879.160455042, 2224759.4651768203, 2215020.732109412]
+INFO 2022-05-13 09:06:20,542 - #Start: No.1 350986
+INFO 2022-05-13 09:06:20,567 - 		T1 fixed : /dataset1/4dct_0510/resampled/350986_t1_resampled.nii
+INFO 2022-05-13 09:06:20,567 - 		T1 moving: /dataset1/4dct_0510/resampled/350986_t0_resampled.nii
+INFO 2022-05-13 09:06:20,567 - 		T1 ddf_r : /dataset1/4dct_0510/transform/350986_t1_Warp.nii.gz
+INFO 2022-05-13 09:06:20,567 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/39_350986_ddf1.npy
+INFO 2022-05-13 09:07:17,514 - #Start: No.1 356857
+INFO 2022-05-13 09:07:17,514 - 		T1 fixed : /dataset1/4dct_0510/resampled/356857_t1_resampled.nii
+INFO 2022-05-13 09:07:17,515 - 		T1 moving: /dataset1/4dct_0510/resampled/356857_t0_resampled.nii
+INFO 2022-05-13 09:07:17,515 - 		T1 ddf_r : /dataset1/4dct_0510/transform/356857_t1_Warp.nii.gz
+INFO 2022-05-13 09:07:17,515 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/39_356857_ddf1.npy
+INFO 2022-05-13 09:09:16,958 - #Start: No.1 347997
+INFO 2022-05-13 09:09:16,958 - 		T1 fixed : /dataset1/4dct_0510/resampled/347997_t1_resampled.nii
+INFO 2022-05-13 09:09:16,958 - 		T1 moving: /dataset1/4dct_0510/resampled/347997_t0_resampled.nii
+INFO 2022-05-13 09:09:16,958 - 		T1 ddf_r : /dataset1/4dct_0510/transform/347997_t1_Warp.nii.gz
+INFO 2022-05-13 09:09:16,958 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347997_ddf1.npy
+INFO 2022-05-13 09:10:35,963 - #Start: No.1 346699
+INFO 2022-05-13 09:10:35,963 - 		T1 fixed : /dataset1/4dct_0510/resampled/346699_t1_resampled.nii
+INFO 2022-05-13 09:10:35,963 - 		T1 moving: /dataset1/4dct_0510/resampled/346699_t0_resampled.nii
+INFO 2022-05-13 09:10:35,964 - 		T1 ddf_r : /dataset1/4dct_0510/transform/346699_t1_Warp.nii.gz
+INFO 2022-05-13 09:10:35,964 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_346699_ddf1.npy
+INFO 2022-05-13 09:10:55,152 - 		T2 fixed : /dataset1/4dct_0510/resampled/346699_t2_resampled.nii
+INFO 2022-05-13 09:10:55,152 - 		T2 moving: /dataset1/4dct_0510/resampled/346699_t0_resampled.nii
+INFO 2022-05-13 09:10:55,152 - 		T2 ddf_r : /dataset1/4dct_0510/transform/346699_t2_Warp.nii.gz
+INFO 2022-05-13 09:10:55,152 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_346699_ddf2.npy
+WARNING 2022-05-13 09:11:04,095 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f72a0040040> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-13 09:11:07,940 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f72586d3940> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-13 09:11:09,772 - 		T3 fixed : /dataset1/4dct_0510/resampled/346699_t3_resampled.nii
+INFO 2022-05-13 09:11:09,773 - 		T3 moving: /dataset1/4dct_0510/resampled/346699_t0_resampled.nii
+INFO 2022-05-13 09:11:09,773 - 		T3 ddf_r : /dataset1/4dct_0510/transform/346699_t3_Warp.nii.gz
+INFO 2022-05-13 09:11:09,773 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_346699_ddf3.npy
+INFO 2022-05-13 09:11:24,099 - 		T4 fixed : /dataset1/4dct_0510/resampled/346699_t4_resampled.nii
+INFO 2022-05-13 09:11:24,099 - 		T4 moving: /dataset1/4dct_0510/resampled/346699_t0_resampled.nii
+INFO 2022-05-13 09:11:24,099 - 		T4 ddf_r : /dataset1/4dct_0510/transform/346699_t4_Warp.nii.gz
+INFO 2022-05-13 09:11:24,099 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_346699_ddf4.npy
+INFO 2022-05-13 09:11:38,693 - 		T5 fixed : /dataset1/4dct_0510/resampled/346699_t5_resampled.nii
+INFO 2022-05-13 09:11:38,694 - 		T5 moving: /dataset1/4dct_0510/resampled/346699_t0_resampled.nii
+INFO 2022-05-13 09:11:38,694 - 		T5 ddf_r : /dataset1/4dct_0510/transform/346699_t5_Warp.nii.gz
+INFO 2022-05-13 09:11:38,694 - 		T5 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_346699_ddf5.npy
+INFO 2022-05-13 09:11:53,532 - 	Left Lung Real: ['346699', 1869533.7842864979, 1838372.4400644416, 1789017.6371782802, 1758035.5306582847, 1725691.3688580724]
+INFO 2022-05-13 09:11:53,532 - 		Left Lung Fake: ['346699', 1869533.7842864979, 1838372.4400644416, 1789017.6371782802, 1758035.5306582847, 1725691.3688580724]
+INFO 2022-05-13 09:11:53,532 - 		Right Lung Real: ['346699', 2510192.253716387, 2379001.4487108844, 2276512.42313992, 2191073.516325992, 2129524.348226469]
+INFO 2022-05-13 09:11:53,532 - 		Right Lung Fake: ['346699', 2577454.49122058, 2502889.489587111, 2444930.5207248135, 2398376.212398697, 2351267.250356584]
+INFO 2022-05-13 09:19:03,303 - #Start: No.1 347320
+INFO 2022-05-13 09:19:03,304 - 		T1 fixed : /dataset1/4dct_0510/resampled/347320_t1_resampled.nii
+INFO 2022-05-13 09:19:03,304 - 		T1 moving: /dataset1/4dct_0510/resampled/347320_t0_resampled.nii
+INFO 2022-05-13 09:19:03,304 - 		T1 ddf_r : /dataset1/4dct_0510/transform/347320_t1_Warp.nii.gz
+INFO 2022-05-13 09:19:03,304 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347320_ddf1.npy
+INFO 2022-05-13 09:19:21,125 - 		T2 fixed : /dataset1/4dct_0510/resampled/347320_t2_resampled.nii
+INFO 2022-05-13 09:19:21,125 - 		T2 moving: /dataset1/4dct_0510/resampled/347320_t0_resampled.nii
+INFO 2022-05-13 09:19:21,126 - 		T2 ddf_r : /dataset1/4dct_0510/transform/347320_t2_Warp.nii.gz
+INFO 2022-05-13 09:19:21,126 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347320_ddf2.npy
+WARNING 2022-05-13 09:19:29,822 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f59bc416af0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-13 09:19:33,792 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f59bc2223a0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-13 09:19:34,764 - 		T3 fixed : /dataset1/4dct_0510/resampled/347320_t3_resampled.nii
+INFO 2022-05-13 09:19:34,764 - 		T3 moving: /dataset1/4dct_0510/resampled/347320_t0_resampled.nii
+INFO 2022-05-13 09:19:34,764 - 		T3 ddf_r : /dataset1/4dct_0510/transform/347320_t3_Warp.nii.gz
+INFO 2022-05-13 09:19:34,764 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347320_ddf3.npy
+INFO 2022-05-13 09:19:50,485 - 		T4 fixed : /dataset1/4dct_0510/resampled/347320_t4_resampled.nii
+INFO 2022-05-13 09:19:50,486 - 		T4 moving: /dataset1/4dct_0510/resampled/347320_t0_resampled.nii
+INFO 2022-05-13 09:19:50,486 - 		T4 ddf_r : /dataset1/4dct_0510/transform/347320_t4_Warp.nii.gz
+INFO 2022-05-13 09:19:50,486 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347320_ddf4.npy
+INFO 2022-05-13 09:20:06,626 - #Start: No.1 349350
+INFO 2022-05-13 09:20:06,626 - 		T1 fixed : /dataset1/4dct_0510/resampled/349350_t1_resampled.nii
+INFO 2022-05-13 09:20:06,626 - 		T1 moving: /dataset1/4dct_0510/resampled/349350_t0_resampled.nii
+INFO 2022-05-13 09:20:06,626 - 		T1 ddf_r : /dataset1/4dct_0510/transform/349350_t1_Warp.nii.gz
+INFO 2022-05-13 09:20:06,627 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_349350_ddf1.npy
+INFO 2022-05-13 09:20:25,873 - 		T2 fixed : /dataset1/4dct_0510/resampled/349350_t2_resampled.nii
+INFO 2022-05-13 09:20:25,873 - 		T2 moving: /dataset1/4dct_0510/resampled/349350_t0_resampled.nii
+INFO 2022-05-13 09:20:25,873 - 		T2 ddf_r : /dataset1/4dct_0510/transform/349350_t2_Warp.nii.gz
+INFO 2022-05-13 09:20:25,873 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_349350_ddf2.npy
+WARNING 2022-05-13 09:20:37,648 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f2b6f5d0670> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-13 09:20:42,041 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f2b6f629e50> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-13 09:20:43,517 - 		T3 fixed : /dataset1/4dct_0510/resampled/349350_t3_resampled.nii
+INFO 2022-05-13 09:20:43,517 - 		T3 moving: /dataset1/4dct_0510/resampled/349350_t0_resampled.nii
+INFO 2022-05-13 09:20:43,517 - 		T3 ddf_r : /dataset1/4dct_0510/transform/349350_t3_Warp.nii.gz
+INFO 2022-05-13 09:20:43,517 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_349350_ddf3.npy
+INFO 2022-05-13 09:20:58,630 - 		T4 fixed : /dataset1/4dct_0510/resampled/349350_t4_resampled.nii
+INFO 2022-05-13 09:20:58,631 - 		T4 moving: /dataset1/4dct_0510/resampled/349350_t0_resampled.nii
+INFO 2022-05-13 09:20:58,631 - 		T4 ddf_r : /dataset1/4dct_0510/transform/349350_t4_Warp.nii.gz
+INFO 2022-05-13 09:20:58,631 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_349350_ddf4.npy
+INFO 2022-05-13 09:21:14,008 - 		T5 fixed : /dataset1/4dct_0510/resampled/349350_t5_resampled.nii
+INFO 2022-05-13 09:21:14,008 - 		T5 moving: /dataset1/4dct_0510/resampled/349350_t0_resampled.nii
+INFO 2022-05-13 09:21:14,008 - 		T5 ddf_r : /dataset1/4dct_0510/transform/349350_t5_Warp.nii.gz
+INFO 2022-05-13 09:21:14,008 - 		T5 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_349350_ddf5.npy
+INFO 2022-05-13 09:21:29,391 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:21:29,392 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:21:29,393 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:21:29,393 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:21:29,563 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:21:29,563 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:21:29,564 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:21:29,564 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:21:29,696 - 	Left Lung Real: ['349350', 1405578.2781737142, 1334116.8870116237, 1327843.8699503897, 1315880.1692903126, 1315330.658259438]
+INFO 2022-05-13 09:21:29,696 - 		Left Lung Fake: ['349350', 1420574.9530124587, 1380116.5416217428, 1369575.2471643481, 1347427.5174074394, 1358740.517144086]
+INFO 2022-05-13 09:21:29,696 - 		Right Lung Real: ['349350', 2557732.8987978934, 2457174.8002349515, 2355602.987681115, 2322914.7197440355, 2308760.840243588]
+INFO 2022-05-13 09:21:29,696 - 		Right Lung Fake: ['349350', 2648726.6618212545, 2600310.3989699343, 2551752.5610223026, 2518829.2421240397, 2523365.3929129]
+INFO 2022-05-13 09:33:18,826 - #Start: No.1 347597
+INFO 2022-05-13 09:33:18,827 - 		T1 fixed : /dataset1/4dct_0510/resampled/347597_t1_resampled.nii
+INFO 2022-05-13 09:33:18,827 - 		T1 moving: /dataset1/4dct_0510/resampled/347597_t0_resampled.nii
+INFO 2022-05-13 09:33:18,827 - 		T1 ddf_r : /dataset1/4dct_0510/transform/347597_t1_Warp.nii.gz
+INFO 2022-05-13 09:33:18,827 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347597_ddf1.npy
+INFO 2022-05-13 09:34:02,297 - #Start: No.1 351260
+INFO 2022-05-13 09:34:02,298 - 		T1 fixed : /dataset1/4dct_0510/resampled/351260_t1_resampled.nii
+INFO 2022-05-13 09:34:02,298 - 		T1 moving: /dataset1/4dct_0510/resampled/351260_t0_resampled.nii
+INFO 2022-05-13 09:34:02,298 - 		T1 ddf_r : /dataset1/4dct_0510/transform/351260_t1_Warp.nii.gz
+INFO 2022-05-13 09:34:02,298 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351260_ddf1.npy
+INFO 2022-05-13 09:34:54,358 - #Start: No.1 356857
+INFO 2022-05-13 09:34:54,358 - 		T1 fixed : /dataset1/4dct_0510/resampled/356857_t1_resampled.nii
+INFO 2022-05-13 09:34:54,358 - 		T1 moving: /dataset1/4dct_0510/resampled/356857_t0_resampled.nii
+INFO 2022-05-13 09:34:54,358 - 		T1 ddf_r : /dataset1/4dct_0510/transform/356857_t1_Warp.nii.gz
+INFO 2022-05-13 09:34:54,359 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_356857_ddf1.npy
+INFO 2022-05-13 09:35:56,549 - #Start: No.1 356857
+INFO 2022-05-13 09:35:56,550 - 		T1 fixed : /dataset1/4dct_0510/resampled/356857_t1_resampled.nii
+INFO 2022-05-13 09:35:56,550 - 		T1 moving: /dataset1/4dct_0510/resampled/356857_t0_resampled.nii
+INFO 2022-05-13 09:35:56,550 - 		T1 ddf_r : /dataset1/4dct_0510/transform/356857_t1_Warp.nii.gz
+INFO 2022-05-13 09:35:56,550 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_356857_ddf1.npy
+WARNING 2022-05-13 09:36:06,656 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f289c1fc8b0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-13 09:36:10,648 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f2a76013040> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-13 09:36:11,610 - 		T2 fixed : /dataset1/4dct_0510/resampled/356857_t2_resampled.nii
+INFO 2022-05-13 09:36:11,611 - 		T2 moving: /dataset1/4dct_0510/resampled/356857_t0_resampled.nii
+INFO 2022-05-13 09:36:11,611 - 		T2 ddf_r : /dataset1/4dct_0510/transform/356857_t2_Warp.nii.gz
+INFO 2022-05-13 09:36:11,611 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_356857_ddf2.npy
+INFO 2022-05-13 09:36:26,629 - 		T3 fixed : /dataset1/4dct_0510/resampled/356857_t3_resampled.nii
+INFO 2022-05-13 09:36:26,629 - 		T3 moving: /dataset1/4dct_0510/resampled/356857_t0_resampled.nii
+INFO 2022-05-13 09:36:26,629 - 		T3 ddf_r : /dataset1/4dct_0510/transform/356857_t3_Warp.nii.gz
+INFO 2022-05-13 09:36:26,629 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_356857_ddf3.npy
+INFO 2022-05-13 09:36:41,604 - 		T4 fixed : /dataset1/4dct_0510/resampled/356857_t4_resampled.nii
+INFO 2022-05-13 09:36:41,604 - 		T4 moving: /dataset1/4dct_0510/resampled/356857_t0_resampled.nii
+INFO 2022-05-13 09:36:41,604 - 		T4 ddf_r : /dataset1/4dct_0510/transform/356857_t4_Warp.nii.gz
+INFO 2022-05-13 09:36:41,604 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_356857_ddf4.npy
+INFO 2022-05-13 09:36:56,401 - 		T5 fixed : /dataset1/4dct_0510/resampled/356857_t5_resampled.nii
+INFO 2022-05-13 09:36:56,402 - 		T5 moving: /dataset1/4dct_0510/resampled/356857_t0_resampled.nii
+INFO 2022-05-13 09:36:56,402 - 		T5 ddf_r : /dataset1/4dct_0510/transform/356857_t5_Warp.nii.gz
+INFO 2022-05-13 09:36:56,402 - 		T5 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_356857_ddf5.npy
+INFO 2022-05-13 09:37:11,324 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:37:11,325 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:37:11,326 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:37:11,326 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:37:11,505 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:37:11,506 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:37:11,507 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:37:11,507 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 09:37:11,642 - 	Left Lung Real: ['356857', 601264.6412023017, 528694.0774543183, 477071.78044297337, 466319.67211161, 452645.30854317016]
+INFO 2022-05-13 09:37:11,642 - 		Left Lung Fake: ['356857', 631111.6105217707, 582726.5055637788, 548280.7005348097, 529002.0067397568, 523869.9094212265]
+INFO 2022-05-13 09:37:11,642 - 		Right Lung Real: ['356857', 577884.8761423689, 499468.07875691156, 440481.1827479132, 436354.29275260906, 416113.0399265212]
+INFO 2022-05-13 09:37:11,642 - 		Right Lung Fake: ['356857', 605104.710662848, 549198.8019521664, 511747.34058139095, 496200.09951889236, 495620.54225530825]
+INFO 2022-05-13 15:43:02,868 - #Start: No.1 347692
+INFO 2022-05-13 15:43:02,869 - 		T1 fixed : /dataset1/4dct_0510/resampled/347692_t1_resampled.nii
+INFO 2022-05-13 15:43:02,869 - 		T1 moving: /dataset1/4dct_0510/resampled/347692_t0_resampled.nii
+INFO 2022-05-13 15:43:02,869 - 		T1 ddf_r : /dataset1/4dct_0510/transform/347692_t1_Warp.nii.gz
+INFO 2022-05-13 15:43:02,869 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347692_ddf1.npy
+INFO 2022-05-13 15:47:56,024 - #Start: No.1 347597
+INFO 2022-05-13 15:47:56,024 - 		T1 fixed : /dataset1/4dct_0510/resampled/347597_t1_resampled.nii
+INFO 2022-05-13 15:47:56,024 - 		T1 moving: /dataset1/4dct_0510/resampled/347597_t0_resampled.nii
+INFO 2022-05-13 15:47:56,024 - 		T1 ddf_r : /dataset1/4dct_0510/transform/347597_t1_Warp.nii.gz
+INFO 2022-05-13 15:47:56,024 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347597_ddf1.npy
+INFO 2022-05-13 15:48:12,341 - 		T2 fixed : /dataset1/4dct_0510/resampled/347597_t2_resampled.nii
+INFO 2022-05-13 15:48:12,342 - 		T2 moving: /dataset1/4dct_0510/resampled/347597_t0_resampled.nii
+INFO 2022-05-13 15:48:12,342 - 		T2 ddf_r : /dataset1/4dct_0510/transform/347597_t2_Warp.nii.gz
+INFO 2022-05-13 15:48:12,342 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347597_ddf2.npy
+WARNING 2022-05-13 15:48:19,571 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7fa454467040> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-13 15:48:23,390 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7fa4543938b0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-13 15:48:24,316 - 		T3 fixed : /dataset1/4dct_0510/resampled/347597_t3_resampled.nii
+INFO 2022-05-13 15:48:24,316 - 		T3 moving: /dataset1/4dct_0510/resampled/347597_t0_resampled.nii
+INFO 2022-05-13 15:48:24,316 - 		T3 ddf_r : /dataset1/4dct_0510/transform/347597_t3_Warp.nii.gz
+INFO 2022-05-13 15:48:24,316 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347597_ddf3.npy
+INFO 2022-05-13 15:48:36,481 - 		T4 fixed : /dataset1/4dct_0510/resampled/347597_t4_resampled.nii
+INFO 2022-05-13 15:48:36,481 - 		T4 moving: /dataset1/4dct_0510/resampled/347597_t0_resampled.nii
+INFO 2022-05-13 15:48:36,481 - 		T4 ddf_r : /dataset1/4dct_0510/transform/347597_t4_Warp.nii.gz
+INFO 2022-05-13 15:48:36,481 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_347597_ddf4.npy
+INFO 2022-05-13 15:50:02,298 - #Start: No.1 354176
+INFO 2022-05-13 15:50:02,298 - 		T1 fixed : /dataset1/4dct_0510/resampled/354176_t1_resampled.nii
+INFO 2022-05-13 15:50:02,298 - 		T1 moving: /dataset1/4dct_0510/resampled/354176_t0_resampled.nii
+INFO 2022-05-13 15:50:02,298 - 		T1 ddf_r : /dataset1/4dct_0510/transform/354176_t1_Warp.nii.gz
+INFO 2022-05-13 15:50:02,298 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_354176_ddf1.npy
+INFO 2022-05-13 15:50:18,854 - 		T2 fixed : /dataset1/4dct_0510/resampled/354176_t2_resampled.nii
+INFO 2022-05-13 15:50:18,854 - 		T2 moving: /dataset1/4dct_0510/resampled/354176_t0_resampled.nii
+INFO 2022-05-13 15:50:18,854 - 		T2 ddf_r : /dataset1/4dct_0510/transform/354176_t2_Warp.nii.gz
+INFO 2022-05-13 15:50:18,854 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_354176_ddf2.npy
+WARNING 2022-05-13 15:50:26,152 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f6e803c2ee0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-13 15:50:29,976 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f6e80227820> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-13 15:50:31,586 - 		T3 fixed : /dataset1/4dct_0510/resampled/354176_t3_resampled.nii
+INFO 2022-05-13 15:50:31,586 - 		T3 moving: /dataset1/4dct_0510/resampled/354176_t0_resampled.nii
+INFO 2022-05-13 15:50:31,587 - 		T3 ddf_r : /dataset1/4dct_0510/transform/354176_t3_Warp.nii.gz
+INFO 2022-05-13 15:50:31,587 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_354176_ddf3.npy
+INFO 2022-05-13 15:50:44,353 - 		T4 fixed : /dataset1/4dct_0510/resampled/354176_t4_resampled.nii
+INFO 2022-05-13 15:50:44,354 - 		T4 moving: /dataset1/4dct_0510/resampled/354176_t0_resampled.nii
+INFO 2022-05-13 15:50:44,354 - 		T4 ddf_r : /dataset1/4dct_0510/transform/354176_t4_Warp.nii.gz
+INFO 2022-05-13 15:50:44,354 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_354176_ddf4.npy
+INFO 2022-05-13 15:50:57,327 - 		T5 fixed : /dataset1/4dct_0510/resampled/354176_t5_resampled.nii
+INFO 2022-05-13 15:50:57,328 - 		T5 moving: /dataset1/4dct_0510/resampled/354176_t0_resampled.nii
+INFO 2022-05-13 15:50:57,328 - 		T5 ddf_r : /dataset1/4dct_0510/transform/354176_t5_Warp.nii.gz
+INFO 2022-05-13 15:50:57,328 - 		T5 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_354176_ddf5.npy
+INFO 2022-05-13 15:51:10,094 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:51:10,095 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:51:10,095 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:51:10,096 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:51:10,279 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:51:10,280 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:51:10,280 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:51:10,281 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:51:10,413 - 	Left Lung Real: ['354176', 1542539.7809083469, 1500926.3829413143, 1449045.3116164883, 1419337.0784524041, 1387066.8805646882]
+INFO 2022-05-13 15:51:10,414 - 		Left Lung Fake: ['354176', 1570555.6169008217, 1551507.7162291717, 1522621.102641116, 1508951.9968411787, 1490436.8178460333]
+INFO 2022-05-13 15:51:10,414 - 		Right Lung Real: ['354176', 1867541.2963124511, 1725549.491250872, 1652852.9481267326, 1603084.3103436618, 1586163.968758244]
+INFO 2022-05-13 15:51:10,414 - 		Right Lung Fake: ['354176', 1930851.077789178, 1857655.5429527198, 1816498.1801516896, 1780392.9004616542, 1749686.5326174868]
+INFO 2022-05-13 15:52:32,969 - #Start: No.1 351260
+INFO 2022-05-13 15:52:32,969 - 		T1 fixed : /dataset1/4dct_0510/resampled/351260_t1_resampled.nii
+INFO 2022-05-13 15:52:32,969 - 		T1 moving: /dataset1/4dct_0510/resampled/351260_t0_resampled.nii
+INFO 2022-05-13 15:52:32,969 - 		T1 ddf_r : /dataset1/4dct_0510/transform/351260_t1_Warp.nii.gz
+INFO 2022-05-13 15:52:32,969 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351260_ddf1.npy
+INFO 2022-05-13 15:52:51,125 - 		T2 fixed : /dataset1/4dct_0510/resampled/351260_t2_resampled.nii
+INFO 2022-05-13 15:52:51,125 - 		T2 moving: /dataset1/4dct_0510/resampled/351260_t0_resampled.nii
+INFO 2022-05-13 15:52:51,125 - 		T2 ddf_r : /dataset1/4dct_0510/transform/351260_t2_Warp.nii.gz
+INFO 2022-05-13 15:52:51,125 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351260_ddf2.npy
+WARNING 2022-05-13 15:53:00,525 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7fed8c6275e0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-13 15:53:04,557 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7fefaab66280> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-13 15:53:05,506 - 		T3 fixed : /dataset1/4dct_0510/resampled/351260_t3_resampled.nii
+INFO 2022-05-13 15:53:05,506 - 		T3 moving: /dataset1/4dct_0510/resampled/351260_t0_resampled.nii
+INFO 2022-05-13 15:53:05,506 - 		T3 ddf_r : /dataset1/4dct_0510/transform/351260_t3_Warp.nii.gz
+INFO 2022-05-13 15:53:05,506 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351260_ddf3.npy
+INFO 2022-05-13 15:53:19,522 - 		T4 fixed : /dataset1/4dct_0510/resampled/351260_t4_resampled.nii
+INFO 2022-05-13 15:53:19,522 - 		T4 moving: /dataset1/4dct_0510/resampled/351260_t0_resampled.nii
+INFO 2022-05-13 15:53:19,522 - 		T4 ddf_r : /dataset1/4dct_0510/transform/351260_t4_Warp.nii.gz
+INFO 2022-05-13 15:53:19,522 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351260_ddf4.npy
+INFO 2022-05-13 15:53:33,344 - 		T5 fixed : /dataset1/4dct_0510/resampled/351260_t5_resampled.nii
+INFO 2022-05-13 15:53:33,345 - 		T5 moving: /dataset1/4dct_0510/resampled/351260_t0_resampled.nii
+INFO 2022-05-13 15:53:33,345 - 		T5 ddf_r : /dataset1/4dct_0510/transform/351260_t5_Warp.nii.gz
+INFO 2022-05-13 15:53:33,345 - 		T5 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351260_ddf5.npy
+INFO 2022-05-13 15:53:47,107 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:53:47,108 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:53:47,108 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:53:47,108 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:53:47,276 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:53:47,276 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:53:47,277 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:53:47,277 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 15:53:47,402 - 	Left Lung Real: ['351260', 1803724.2040739423, 1737977.9998927484, 1669104.891901681, 1635503.494844483, 1599766.068396145]
+INFO 2022-05-13 15:53:47,402 - 		Left Lung Fake: ['351260', 1830829.4822888603, 1795827.6110684725, 1758038.8582780696, 1732855.129233598, 1713428.182417337]
+INFO 2022-05-13 15:53:47,402 - 		Right Lung Real: ['351260', 2039285.803638879, 1895296.9729399097, 1828819.9024495536, 1782204.4869237477, 1811402.686728044]
+INFO 2022-05-13 15:53:47,402 - 		Right Lung Fake: ['351260', 2143372.540473022, 2061831.7889818854, 2016004.8680897013, 1993548.4259700032, 2001730.1354888775]
+INFO 2022-05-13 15:59:24,734 - #Start: No.1 351260
+INFO 2022-05-13 15:59:24,734 - 		T1 fixed : /dataset1/4dct_0510/resampled/351260_t1_resampled.nii
+INFO 2022-05-13 15:59:24,734 - 		T1 moving: /dataset1/4dct_0510/resampled/351260_t0_resampled.nii
+INFO 2022-05-13 15:59:24,735 - 		T1 ddf_r : /dataset1/4dct_0510/transform/351260_t1_Warp.nii.gz
+INFO 2022-05-13 15:59:24,735 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351260_ddf1.npy
+INFO 2022-05-13 15:59:36,972 - #Start: No.1 351123
+INFO 2022-05-13 15:59:36,972 - 		T1 fixed : /dataset1/4dct_0510/resampled/351123_t1_resampled.nii
+INFO 2022-05-13 15:59:36,972 - 		T1 moving: /dataset1/4dct_0510/resampled/351123_t0_resampled.nii
+INFO 2022-05-13 15:59:36,972 - 		T1 ddf_r : /dataset1/4dct_0510/transform/351123_t1_Warp.nii.gz
+INFO 2022-05-13 15:59:36,972 - 		T1 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351123_ddf1.npy
+INFO 2022-05-13 15:59:54,852 - 		T2 fixed : /dataset1/4dct_0510/resampled/351123_t2_resampled.nii
+INFO 2022-05-13 15:59:54,852 - 		T2 moving: /dataset1/4dct_0510/resampled/351123_t0_resampled.nii
+INFO 2022-05-13 15:59:54,852 - 		T2 ddf_r : /dataset1/4dct_0510/transform/351123_t2_Warp.nii.gz
+INFO 2022-05-13 15:59:54,852 - 		T2 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351123_ddf2.npy
+WARNING 2022-05-13 16:00:04,187 - 5 out of the last 5 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f0fefd7bca0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING 2022-05-13 16:00:08,142 - 6 out of the last 6 calls to <function Model.make_predict_function.<locals>.predict_function at 0x7f0fefdb0550> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+INFO 2022-05-13 16:00:09,099 - 		T3 fixed : /dataset1/4dct_0510/resampled/351123_t3_resampled.nii
+INFO 2022-05-13 16:00:09,099 - 		T3 moving: /dataset1/4dct_0510/resampled/351123_t0_resampled.nii
+INFO 2022-05-13 16:00:09,099 - 		T3 ddf_r : /dataset1/4dct_0510/transform/351123_t3_Warp.nii.gz
+INFO 2022-05-13 16:00:09,099 - 		T3 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351123_ddf3.npy
+INFO 2022-05-13 16:00:23,024 - 		T4 fixed : /dataset1/4dct_0510/resampled/351123_t4_resampled.nii
+INFO 2022-05-13 16:00:23,025 - 		T4 moving: /dataset1/4dct_0510/resampled/351123_t0_resampled.nii
+INFO 2022-05-13 16:00:23,025 - 		T4 ddf_r : /dataset1/4dct_0510/transform/351123_t4_Warp.nii.gz
+INFO 2022-05-13 16:00:23,025 - 		T4 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351123_ddf4.npy
+INFO 2022-05-13 16:00:36,914 - 		T5 fixed : /dataset1/4dct_0510/resampled/351123_t5_resampled.nii
+INFO 2022-05-13 16:00:36,915 - 		T5 moving: /dataset1/4dct_0510/resampled/351123_t0_resampled.nii
+INFO 2022-05-13 16:00:36,915 - 		T5 ddf_r : /dataset1/4dct_0510/transform/351123_t5_Warp.nii.gz
+INFO 2022-05-13 16:00:36,915 - 		T5 ddf_f : /home/zhaosheng/paper4/outputs/A2B/99/ddfs/99_351123_ddf5.npy
+INFO 2022-05-13 16:00:50,588 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 16:00:50,589 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 16:00:50,590 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 16:00:50,590 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 16:00:50,754 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 16:00:50,755 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 16:00:50,755 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 16:00:50,756 - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+INFO 2022-05-13 16:00:50,878 - 	Left Lung Real: ['351123', 2371652.249160062, 2378712.702066805, 2300023.2669651587, 2281197.4092864413, 2278896.5114604943]
+INFO 2022-05-13 16:00:50,878 - 		Left Lung Fake: ['351123', 2417925.6761252275, 2389725.7622564593, 2332460.148353019, 2321500.4813353713, 2324491.557755835]
+INFO 2022-05-13 16:00:50,878 - 		Right Lung Real: ['351123', 2347787.3163386006, 2249645.977272305, 2191837.053811226, 2116491.120316374, 2107719.2120519797]
+INFO 2022-05-13 16:00:50,878 - 		Right Lung Fake: ['351123', 2431667.3845386575, 2384479.1646434814, 2360290.091403863, 2304167.9686629362, 2286236.4844291853]

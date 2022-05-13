@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 
 logging.basicConfig(filename='./check_results.log', format="%(levelname)s %(asctime)s - %(message)s", level=logging.INFO)
 
-def get_result(ddf_real,ddf_fake,moving,fixed,savepath=None,plot=True,get_lung=True):
+def get_result(ddf_real,ddf_fake,moving,fixed,t_index,savepath=None,plot=True,get_lung=True):
     result_real = warp_img_nii(moving,fixed,ddf_real)
     result_fake = warp_img_npy(moving,fixed,ddf_fake)
 
@@ -51,18 +51,18 @@ def get_result(ddf_real,ddf_fake,moving,fixed,savepath=None,plot=True,get_lung=T
         result["lung_fake"] = get_lung_mask(result_fake["moved"])
         result["lung_moving"] = get_lung_mask(result_real["moving"])
     if savepath:
-        os.makedirs(f"{savepath}/{pname}", exist_ok=True)
-        ants.image_write(result_real["fixed"],f"{savepath}/{pname}/fixed.nii.gz")
-        ants.image_write(result_real["moving"],f"{savepath}/{pname}/moving.nii.gz")
-        ants.image_write(result_real["moved"],f"{savepath}/{pname}/moved_real.nii.gz")
-        ants.image_write(result_fake["moved"],f"{savepath}/{pname}/moved_fake.nii.gz")
+        os.makedirs(f"{savepath}/{pname}/{t_index}", exist_ok=True)
+        ants.image_write(result_real["fixed"],f"{savepath}/{pname}/{t_index}/fixed.nii.gz")
+        ants.image_write(result_real["moving"],f"{savepath}/{pname}/{t_index}/moving.nii.gz")
+        ants.image_write(result_real["moved"],f"{savepath}/{pname}/{t_index}/moved_real.nii.gz")
+        ants.image_write(result_fake["moved"],f"{savepath}/{pname}/{t_index}/moved_fake.nii.gz")
     return result
 
 def sortddf(item):
     return item.split("/")[-1].split(".")[0].split("_ddf")[-1]
 
 if __name__ == "__main__":
-    ddf_path = "/home/zhaosheng/paper4/outputs/A2B_0512/39/ddfs"
+    ddf_path = "/home/zhaosheng/paper4/outputs/A2B/99/ddfs"
     lung_png_path = "./"
     img_save_path = "./"
 
@@ -88,7 +88,7 @@ if __name__ == "__main__":
             fixed = f"/dataset1/4dct_0510/resampled/{pname}_t{index}_resampled.nii"
             moving = f"/dataset1/4dct_0510/resampled/{pname}_t0_resampled.nii"
             real_ddf = os.path.join("/dataset1/4dct_0510/transform",f"{pname}_t{index}_Warp.nii.gz")
-            fake_ddf = os.path.join(ddf_path,f"39_{pname}_ddf{index}.npy")
+            fake_ddf = os.path.join(ddf_path,f"99_{pname}_ddf{index}.npy")
             logging.info(f"\t\tT{index} fixed : {fixed}")
             logging.info(f"\t\tT{index} moving: {moving}")
             logging.info(f"\t\tT{index} ddf_r : {real_ddf}")
@@ -99,6 +99,7 @@ if __name__ == "__main__":
                 ddf_fake=fake_ddf,
                 moving=moving,
                 fixed=fixed,
+                t_index=index,
                 savepath=img_save_path,
                 plot=False,
             )
@@ -128,7 +129,7 @@ if __name__ == "__main__":
         left_lung_real_all.append(left_lung_real)
         logging.info(f"\tLeft Lung Real: {left_lung_real}")
         left_lung_fake_all.append(left_lung_fake)
-        logging.info(f"\t\tLeft Lung Fake: {left_lung_real}")
+        logging.info(f"\t\tLeft Lung Fake: {left_lung_fake}")
         right_lung_real_all.append(right_lung_real)
         logging.info(f"\t\tRight Lung Real: {right_lung_real}")
         right_lung_fake_all.append(right_lung_fake)

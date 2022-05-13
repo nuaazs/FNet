@@ -4,11 +4,13 @@ import ants
 
 
 def load_npy_ddf(npy_array_filepath,shape,spacing,savepath="./temp.nii.gz"):
-    npy_array = np.load(npy_array_filepath,allow_pickle=True)[0]
-    if npy_array.shape[0] != shape:
-        resample_3d_npy(npy_array,shape)
-    ddf_img = ants.from_numpy(npy_array)
-    ants.set_spacing(ddf_img,(1,spacing[0],spacing[1],spacing[2]))
+    npy_array = np.load(npy_array_filepath,allow_pickle=True)[0].transpose(1,2,3,0)
+    # print(npy_array[0].shape)
+    # print(shape)
+    # if npy_array[0].shape != shape:
+    #     resample_3d_npy(npy_array,shape)
+    ddf_img = ants.from_numpy(npy_array,is_rgb=True)
+    ants.set_spacing(ddf_img,(spacing[0],spacing[1],spacing[2]))
     ants.image_write(ddf_img,savepath)
     return ddf_img,savepath
 
@@ -33,9 +35,11 @@ def warp_img_nii(fixed_filepath,moving_filepath,ddf_nii_filepath):
         ddf_npy = ddf_img.numpy().transpose(3,0,1,2)
         ddf_npy_reshaped = resample_3d_npy(ddf_npy,moving.shape)
         ddf_img_reshaped = ants.from_numpy(ddf_npy_reshaped)
-        ants.set_spacing(ddf_img_reshaped,(1,moving.spacing[0],moving.spacing[1],moving.spacing[2]))
+        ants.set_spacing(ddf_img_reshaped,(moving.spacing[0],moving.spacing[1],moving.spacing[2]))
         ants.image_write(ddf_img_reshaped,"./temp_real_ddf.nii")
-    moved_img = ants.apply_transforms( fixed=fixed, moving=moving,transformlist=["./temp_real_ddf.nii"])
+        moved_img = ants.apply_transforms( fixed=fixed, moving=moving,transformlist=["./temp_real_ddf.nii"])
+    else:
+        moved_img = ants.apply_transforms( fixed=fixed, moving=moving,transformlist=[ddf_nii_filepath])
     result = {
         "fixed":fixed,
         "moving":moving,
