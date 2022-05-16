@@ -1,0 +1,270 @@
+10:22:30,575 root INFO ** Start **
+10:22:30,576 root INFO -> Pat Name:120829 T1
+10:22:30,577 root INFO 	-> Reading imgs ... 
+10:22:31,616 root INFO 	-> Doing registeration ... 
+10:24:33,350 root INFO 	-> Saving transform ... 
+10:24:36,20 root INFO 	-> Register Done. time used:124.40389490127563
+10:24:36,20 root INFO 	*-> Start resampling ddf ...
+10:24:41,785 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:24:41,785 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 2.0)
+10:24:41,794 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+10:24:41,795 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:24:49,388 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:24:49,388 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:24:49,395 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+10:24:49,396 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:25:35,928 root INFO 	*-> new fake-real ddf shape :(512, 512, 148)
+10:26:14,10 root INFO 	*-> new fake-fake ddf shape :(512, 512, 148)
+10:26:14,10 root INFO 	*-> Resample Done. time used:97.99034094810486
+10:26:14,10 root INFO 	-> Start Warpping ... 
+10:26:57,758 root INFO # All Done. Total time used:267.18092250823975
+10:26:57,853 root INFO -> Pat Name:120829 T2
+10:26:57,853 root INFO 	-> Reading imgs ... 
+10:26:58,925 root INFO 	-> Doing registeration ... 
+10:29:02,296 root INFO 	-> Saving transform ... 
+10:29:05,181 root INFO 	-> Register Done. time used:126.25574350357056
+10:29:05,181 root INFO 	*-> Start resampling ddf ...
+10:29:10,916 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:29:10,917 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 2.0)
+10:29:10,924 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+10:29:10,924 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:29:18,641 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:29:18,641 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:29:18,649 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+10:29:18,649 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:30:05,274 root INFO 	*-> new fake-real ddf shape :(512, 512, 148)
+10:30:41,4 root INFO 	*-> new fake-fake ddf shape :(512, 512, 148)
+10:30:41,4 root INFO 	*-> Resample Done. time used:95.82281613349915
+10:30:41,4 root INFO 	-> Start Warpping ... 
+10:31:25,335 root INFO # All Done. Total time used:267.48248052597046
+10:31:25,468 root INFO -> Pat Name:120829 T3
+10:31:25,468 root INFO 	-> Reading imgs ... 
+10:31:26,545 root INFO 	-> Doing registeration ... 
+10:33:26,19 root INFO 	-> Saving transform ... 
+10:33:28,729 root INFO 	-> Register Done. time used:122.18336009979248
+10:33:28,729 root INFO 	*-> Start resampling ddf ...
+10:33:34,669 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:33:34,669 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 2.0)
+10:33:34,674 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+10:33:34,675 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:33:46,763 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:33:46,763 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:33:46,769 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+10:33:46,769 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:34:36,745 root INFO 	*-> new fake-real ddf shape :(512, 512, 148)
+10:35:15,281 root INFO 	*-> new fake-fake ddf shape :(512, 512, 148)
+10:35:15,281 root INFO 	*-> Resample Done. time used:106.55137801170349
+10:35:15,281 root INFO 	-> Start Warpping ... 
+10:35:54,652 root INFO # All Done. Total time used:269.1838390827179
+10:35:54,790 root INFO -> Pat Name:120829 T4
+10:35:54,790 root INFO 	-> Reading imgs ... 
+10:35:55,943 root INFO 	-> Doing registeration ... 
+10:38:05,777 root INFO 	-> Saving transform ... 
+10:38:08,279 root INFO 	-> Register Done. time used:132.33631658554077
+10:38:08,279 root INFO 	*-> Start resampling ddf ...
+10:38:14,811 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:38:14,811 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 2.0)
+10:38:14,816 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+10:38:14,816 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:38:26,201 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:38:26,201 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:38:26,205 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+10:38:26,205 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:39:13,698 root INFO 	*-> new fake-real ddf shape :(512, 512, 148)
+10:39:47,858 root INFO 	*-> new fake-fake ddf shape :(512, 512, 148)
+10:39:47,858 root INFO 	*-> Resample Done. time used:99.57845759391785
+10:39:47,858 root INFO 	-> Start Warpping ... 
+10:40:29,940 root INFO # All Done. Total time used:275.1499490737915
+10:40:30,65 root INFO -> Pat Name:120829 T5
+10:40:30,65 root INFO 	-> Reading imgs ... 
+10:40:31,255 root INFO 	-> Doing registeration ... 
+10:42:28,983 root INFO 	-> Saving transform ... 
+10:42:31,852 root INFO 	-> Register Done. time used:120.59663009643555
+10:42:31,852 root INFO 	*-> Start resampling ddf ...
+10:42:37,626 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:42:37,626 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 2.0)
+10:42:37,631 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+10:42:37,631 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:42:45,232 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:42:45,232 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:42:45,236 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+10:42:45,236 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:43:28,992 root INFO 	*-> new fake-real ddf shape :(512, 512, 148)
+10:44:07,440 root INFO 	*-> new fake-fake ddf shape :(512, 512, 148)
+10:44:07,440 root INFO 	*-> Resample Done. time used:95.5880126953125
+10:44:07,440 root INFO 	-> Start Warpping ... 
+10:44:49,774 root INFO # All Done. Total time used:259.70862865448
+10:44:49,894 root INFO -> Pat Name:120829 T6
+10:44:49,894 root INFO 	-> Reading imgs ... 
+10:44:50,962 root INFO 	-> Doing registeration ... 
+10:46:50,413 root INFO 	-> Saving transform ... 
+10:46:53,369 root INFO 	-> Register Done. time used:122.40664911270142
+10:46:53,369 root INFO 	*-> Start resampling ddf ...
+10:46:59,159 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:46:59,159 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 2.0)
+10:46:59,162 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+10:46:59,162 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:47:06,621 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:47:06,622 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:47:06,626 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+10:47:06,626 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:47:55,141 root INFO 	*-> new fake-real ddf shape :(512, 512, 148)
+10:48:30,111 root INFO 	*-> new fake-fake ddf shape :(512, 512, 148)
+10:48:30,111 root INFO 	*-> Resample Done. time used:96.74257493019104
+10:48:30,112 root INFO 	-> Start Warpping ... 
+10:49:12,787 root INFO # All Done. Total time used:262.8934726715088
+10:49:12,918 root INFO -> Pat Name:120829 T7
+10:49:12,918 root INFO 	-> Reading imgs ... 
+10:49:13,950 root INFO 	-> Doing registeration ... 
+10:51:13,597 root INFO 	-> Saving transform ... 
+10:51:16,188 root INFO 	-> Register Done. time used:122.2381432056427
+10:51:16,188 root INFO 	*-> Start resampling ddf ...
+10:51:21,852 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:51:21,852 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 2.0)
+10:51:21,856 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+10:51:21,856 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:51:29,691 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:51:29,692 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:51:29,696 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+10:51:29,696 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:52:09,920 root INFO 	*-> new fake-real ddf shape :(512, 512, 148)
+10:52:47,361 root INFO 	*-> new fake-fake ddf shape :(512, 512, 148)
+10:52:47,361 root INFO 	*-> Resample Done. time used:91.17285680770874
+10:52:47,361 root INFO 	-> Start Warpping ... 
+10:53:25,390 root INFO # All Done. Total time used:252.47186374664307
+10:53:25,528 root INFO -> Pat Name:120829 T8
+10:53:25,528 root INFO 	-> Reading imgs ... 
+10:53:26,511 root INFO 	-> Doing registeration ... 
+10:55:27,913 root INFO 	-> Saving transform ... 
+10:55:30,737 root INFO 	-> Register Done. time used:124.22522521018982
+10:55:30,737 root INFO 	*-> Start resampling ddf ...
+10:55:36,451 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:55:36,451 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 2.0)
+10:55:36,454 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+10:55:36,454 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:55:44,171 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:55:44,172 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+10:55:44,175 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+10:55:44,176 root INFO 	*-> dist ddf shape :(512, 512, 148)
+10:56:34,579 root INFO 	*-> new fake-real ddf shape :(512, 512, 148)
+10:57:12,473 root INFO 	*-> new fake-fake ddf shape :(512, 512, 148)
+10:57:12,473 root INFO 	*-> Resample Done. time used:101.73677253723145
+10:57:12,473 root INFO 	-> Start Warpping ... 
+10:57:57,372 root INFO # All Done. Total time used:271.8436336517334
+10:57:57,499 root INFO -> Pat Name:120829 T9
+10:57:57,499 root INFO 	-> Reading imgs ... 
+10:57:58,545 root INFO 	-> Doing registeration ... 
+10:59:56,209 root INFO 	-> Saving transform ... 
+10:59:59,113 root INFO 	-> Register Done. time used:120.56699180603027
+10:59:59,113 root INFO 	*-> Start resampling ddf ...
+11:00:04,805 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+11:00:04,805 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 2.0)
+11:00:04,809 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+11:00:04,809 root INFO 	*-> dist ddf shape :(512, 512, 148)
+11:00:12,453 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+11:00:12,453 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 4.666666507720947)
+11:00:12,457 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+11:00:12,457 root INFO 	*-> dist ddf shape :(512, 512, 148)
+11:01:01,110 root INFO 	*-> new fake-real ddf shape :(512, 512, 148)
+11:01:39,628 root INFO 	*-> new fake-fake ddf shape :(512, 512, 148)
+11:01:39,628 root INFO 	*-> Resample Done. time used:100.51507592201233
+11:01:39,628 root INFO 	-> Start Warpping ... 
+11:02:23,386 root INFO # All Done. Total time used:265.8872685432434
+11:02:23,510 root INFO -> Pat Name:121113 T1
+11:02:23,511 root INFO 	-> Reading imgs ... 
+11:02:40,761 root INFO 	-> Doing registeration ... 
+11:07:08,334 root INFO 	-> Saving transform ... 
+11:07:12,525 root INFO 	-> Register Done. time used:271.7631652355194
+11:07:12,525 root INFO 	*-> Start resampling ddf ...
+11:07:20,592 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:07:20,592 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 1.5)
+11:07:20,595 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+11:07:20,595 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:07:31,904 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:07:31,904 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:07:31,908 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+11:07:31,908 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:08:38,624 root INFO 	*-> new fake-real ddf shape :(512, 512, 212)
+11:09:34,266 root INFO 	*-> new fake-fake ddf shape :(512, 512, 212)
+11:09:34,267 root INFO 	*-> Resample Done. time used:141.74193334579468
+11:09:34,267 root INFO 	-> Start Warpping ... 
+11:10:36,0 root INFO # All Done. Total time used:492.4892852306366
+11:10:36,191 root INFO -> Pat Name:121113 T2
+11:10:36,191 root INFO 	-> Reading imgs ... 
+11:10:48,354 root INFO 	-> Doing registeration ... 
+11:15:15,721 root INFO 	-> Saving transform ... 
+11:15:19,724 root INFO 	-> Register Done. time used:271.3704183101654
+11:15:19,724 root INFO 	*-> Start resampling ddf ...
+11:15:29,148 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:15:29,148 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 1.5)
+11:15:29,153 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+11:15:29,153 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:15:41,569 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:15:41,569 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:15:41,576 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+11:15:41,576 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:16:48,679 root INFO 	*-> new fake-real ddf shape :(512, 512, 212)
+11:17:40,663 root INFO 	*-> new fake-fake ddf shape :(512, 512, 212)
+11:17:40,664 root INFO 	*-> Resample Done. time used:140.93927192687988
+11:17:40,664 root INFO 	-> Start Warpping ... 
+11:18:42,375 root INFO # All Done. Total time used:486.1836633682251
+11:18:42,558 root INFO -> Pat Name:121113 T3
+11:18:42,558 root INFO 	-> Reading imgs ... 
+11:18:50,134 root INFO 	-> Doing registeration ... 
+11:23:22,973 root INFO 	-> Saving transform ... 
+11:23:27,161 root INFO 	-> Register Done. time used:277.0261664390564
+11:23:27,161 root INFO 	*-> Start resampling ddf ...
+11:23:35,595 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:23:35,595 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 1.5)
+11:23:35,599 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+11:23:35,599 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:23:46,737 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:23:46,738 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:23:46,744 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+11:23:46,745 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:25:00,321 root INFO 	*-> new fake-real ddf shape :(512, 512, 212)
+11:25:53,72 root INFO 	*-> new fake-fake ddf shape :(512, 512, 212)
+11:25:53,72 root INFO 	*-> Resample Done. time used:145.91109323501587
+11:25:53,72 root INFO 	-> Start Warpping ... 
+11:26:53,261 root INFO # All Done. Total time used:490.7027757167816
+11:26:53,453 root INFO -> Pat Name:121113 T4
+11:26:53,453 root INFO 	-> Reading imgs ... 
+11:27:00,678 root INFO 	-> Doing registeration ... 
+11:31:17,398 root INFO 	-> Saving transform ... 
+11:31:21,688 root INFO 	-> Register Done. time used:261.01022696495056
+11:31:21,688 root INFO 	*-> Start resampling ddf ...
+11:31:29,942 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:31:29,942 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 1.5)
+11:31:29,945 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+11:31:29,945 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:31:41,108 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:31:41,109 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:31:41,115 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+11:31:41,115 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:32:43,333 root INFO 	*-> new fake-real ddf shape :(512, 512, 212)
+11:33:36,513 root INFO 	*-> new fake-fake ddf shape :(512, 512, 212)
+11:33:36,513 root INFO 	*-> Resample Done. time used:134.82480382919312
+11:33:36,513 root INFO 	-> Start Warpping ... 
+11:34:35,344 root INFO # All Done. Total time used:461.89072847366333
+11:34:35,524 root INFO -> Pat Name:121113 T5
+11:34:35,524 root INFO 	-> Reading imgs ... 
+11:34:43,271 root INFO 	-> Doing registeration ... 
+11:38:41,97 root INFO 	-> Saving transform ... 
+11:38:45,56 root INFO 	-> Register Done. time used:241.78482723236084
+11:38:45,56 root INFO 	*-> Start resampling ddf ...
+11:38:54,399 root INFO 	*-> real before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:38:54,400 root INFO 	*-> dist spacing :(0.9765625, 0.9765625, 1.5)
+11:38:54,405 root INFO 	*-> real before: ddf shape:(128, 128, 64, 3)
+11:38:54,405 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:39:17,290 root INFO 	*-> fake before: spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:39:17,290 root INFO 	*-> dist spacing :(3.929318428039551, 3.929318428039551, 5.023809432983398)
+11:39:17,297 root INFO 	*-> fake before: ddf shape:(128, 128, 64, 3)
+11:39:17,297 root INFO 	*-> dist ddf shape :(512, 512, 212)
+11:40:19,881 root INFO 	*-> new fake-real ddf shape :(512, 512, 212)
+11:41:08,368 root INFO 	*-> new fake-fake ddf shape :(512, 512, 212)
+11:41:08,369 root INFO 	*-> Resample Done. time used:143.3127212524414
+11:41:08,369 root INFO 	-> Start Warpping ... 
+11:42:10,892 root INFO # All Done. Total time used:455.36756658554077
+11:42:11,98 root INFO -> Pat Name:121113 T6
+11:42:11,98 root INFO 	-> Reading imgs ... 
+11:42:19,403 root INFO 	-> Doing registeration ... 

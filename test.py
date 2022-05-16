@@ -51,7 +51,7 @@ os.makedirs(f"./outputs/{args.name}/{load}/images",exist_ok=True)
 os.makedirs(f"./outputs/{args.name}/{load}/ddfs",exist_ok=True)
 
 # DataLoader
-_,val_loader = getDataLoader(batch_size=1,num_workers=1,istry=args.istry,mode="test")
+val_loader,_ = getDataLoader(batch_size=1,num_workers=1,istry=args.istry)
 
 net = Net()
 print('# generator parameters:', sum(param.numel() for param in net.parameters()))

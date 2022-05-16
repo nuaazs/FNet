@@ -30,6 +30,15 @@ from time import *
 os.environ["ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS"] = "80"
 os.environ["ANTS_RANDOM_SEED"] = "3"
 
+import logging
+logging.basicConfig(filename="get_transform.log",
+                    filemode='a',
+                    format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                    datefmt='%H:%M:%S',
+                    level=logging.DEBUG)
+
+logging.info("** Start **")
+
 # DatasetsMaker
 
 def get_transform(moving_file, fixed_file,type_of_transform,plots_path,transform_path,resampled_path,fixed_shape=(128,128,64)):
@@ -104,12 +113,20 @@ def get_transform(moving_file, fixed_file,type_of_transform,plots_path,transform
 
 def getTransform(item):
     patient,i = item
-    get_transform(moving_file       = f"/media/wurenyao/TOSHIBA EXT/4dct_niis/t0/{patient}_t0.nii",
-                     fixed_file        = f"/media/wurenyao/TOSHIBA EXT/4dct_niis/t{i}/{patient}_t{i}.nii",
+    # get_transform(moving_file       = f"/media/wurenyao/TOSHIBA EXT/4dct_niis/t0/{patient}_t0.nii",
+    #                  fixed_file        = f"/media/wurenyao/TOSHIBA EXT/4dct_niis/t{i}/{patient}_t{i}.nii",
+    #                  type_of_transform = "SyNAggro",
+    #                  plots_path        = "/dataset1/4dct_0510/4dct_reg_plots/",
+    #                  transform_path    = "/dataset1/4dct_0510/transform/",
+    #                  resampled_path    = "/dataset1/4dct_0510/resampled/",
+    #                  fixed_shape       = (128,128,64)
+    #                 )
+    get_transform(moving_file       = f"/home/zhaosheng/4dct_test_nii/{patient}/{patient}_t0.nii",
+                     fixed_file        = f"/home/zhaosheng/4dct_test_nii/{patient}/{patient}_t{i}.nii",
                      type_of_transform = "SyNAggro",
-                     plots_path        = "/dataset1/4dct_0510/4dct_reg_plots/",
-                     transform_path    = "/dataset1/4dct_0510/transform/",
-                     resampled_path    = "/dataset1/4dct_0510/resampled/",
+                     plots_path        = "/dataset1/4dct_0510_test/4dct_reg_plots/",
+                     transform_path    = "/dataset1/4dct_0510_test/transform/",
+                     resampled_path    = "/dataset1/4dct_0510_test/resampled/",
                      fixed_shape       = (128,128,64)
                     )
 
@@ -128,10 +145,13 @@ def make_data(items):
             print(f"Pass : {item}\n=====================\n{e}\n=====================")
 
 if __name__ == "__main__":
-    
+    files = []
     # raw nii path (512*512*x)
-    files = os.listdir("/media/wurenyao/TOSHIBA EXT/4dct_niis/t9")
+    # files = os.listdir("/media/wurenyao/TOSHIBA EXT/4dct_niis/t9")
+    pnames = os.listdir("/home/zhaosheng/4dct_test_nii/")
     patients_dict = {}
+    for pname in pnames:
+        files+=os.listdir(f"/home/zhaosheng/4dct_test_nii/{pname}")
     for _file in files:
         patient = _file.split("_")[0]
         if patient in patients_dict:

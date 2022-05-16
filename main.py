@@ -126,9 +126,6 @@ for epoch in range(args.load,args.load+args.epochs):
                     results = net(t0_image)
                     ddf1,ddf2,ddf3,ddf4,ddf5= results
 
-
-
-                    
                     if not args.B2A:
                         loss_ddf1 = image_loss(ddf1,batch_data["t1_trans"].cuda())
                         loss_ddf2 = image_loss(ddf2,batch_data["t2_trans"].cuda())

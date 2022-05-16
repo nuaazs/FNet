@@ -21,9 +21,9 @@ from monai.transforms import (
 
 def getDataLoader(batch_size=1,num_workers=5,istry=False,mode="train"):
     data_dir = "/dataset1/4dct_0510/resampled"
-    # test_data_dir = "/zhaosheng_data/4dct_4_test"
+    # test_data_dir = "/dataset1/4dct_0510/resampled"
     transform_dir = "/dataset1/4dct_0510/transform"
-    # test_trans_dir = "/dataset1/4dct_4_lungs_test"
+    # test_trans_dir = "/dataset1/4dct_0510/transform"
     
     data_inputs_reample = []
     for item in [_file.split("_")[0] for _file in os.listdir(data_dir) if "t9" in _file]:
@@ -71,7 +71,7 @@ def getDataLoader(batch_size=1,num_workers=5,istry=False,mode="train"):
         train_files, val_files = data_dicts[:10], data_dicts[-10:]
     else:
         train_files, val_files = data_dicts, data_dicts[-20:]
-
+    print(val_files)
     train_transforms = Compose(
         [
             LoadImaged(
