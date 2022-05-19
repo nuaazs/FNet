@@ -6,6 +6,7 @@ import os
 import numpy as np
 import shutil
 from tqdm import tqdm
+from utils.log import logger
 
 class Patient():
     def __init__(self,patient_name,imgs_save_path,calc_tumor=False):

@@ -1,4 +1,3 @@
-
 # ██╗██╗███╗   ██╗████████╗
 # ██║██║████╗  ██║╚══██╔══╝
 # ██║██║██╔██╗ ██║   ██║
@@ -12,6 +11,9 @@
 # @File    : /dataset1/4dct/get_transforms.py
 # @Describe: Get transforms and reshape nii files.
 
+from asyncio.log import logger
+from click import style
+from cv2 import log
 from datasets_maker import DatasetsMaker as DM
 import os
 from tqdm import tqdm
