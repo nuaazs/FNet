@@ -6,10 +6,10 @@ from time import time
 import shutil
 import os
 # paths
-SAVE_512_DDF_PATH = "/media/wurenyao/TOSHIBA EXT/4dct_512_ddfs"
-SAVE_FAKE_512_DDF_PATH = "/media/wurenyao/TOSHIBA EXT/4dct_512_fake_ddfs"
-SAVE_REAL_RESAMPLED_PATH = "/media/wurenyao/TOSHIBA EXT/4dct_512_resampled_real"
-SAVE_FAKE_RESAMPLED_PATH = "/media/wurenyao/TOSHIBA EXT/4dct_512_resampled_fake"
+SAVE_512_DDF_PATH = "/pan/4dct_512_ddfs"
+SAVE_FAKE_512_DDF_PATH = "/pan/4dct_512_fake_ddfs"
+SAVE_REAL_RESAMPLED_PATH = "/pan/4dct_512_resampled_real"
+SAVE_FAKE_RESAMPLED_PATH = "/pan/4dct_512_resampled_fake"
 
 import logging
 logging.basicConfig(filename="get_transform.log",
@@ -26,8 +26,8 @@ def get_ddf_and_imgs(t0_512_path,t5_512_path,real_ddf_128_path,fake_ddf_128_path
     pname = t0_512_path.split('/')[-1].split("_")[0]
     tindex = t5_512_path.split('/')[-1].split("_")[1].split(".")[0].replace('t','')
     logging.info(f"-> Pat Name:{pname} T{tindex}")
-    # t0_512_path = "/media/wurenyao/TOSHIBA EXT/4dct_niis/t0/355485_t0.nii"
-    # t5_512_path = "/media/wurenyao/TOSHIBA EXT/4dct_niis/t5/355485_t5.nii"
+    # t0_512_path = "/pan/4dct_niis/t0/355485_t0.nii"
+    # t5_512_path = "/pan/4dct_niis/t5/355485_t5.nii"
     # t0_128_path = "/dataset1/4dct_0510/resampled/355485_t0_resampled.nii"
     # t5_128_path = "/dataset1/4dct_0510/resampled/355485_t5_resampled.nii"
     # # ddf_128_path = "/home/zhaosheng/paper4/outputs/A2B/34/ddfs/34_355485_ddf5.npy"
@@ -138,8 +138,8 @@ if __name__ == "__main__":
             else:
                 ddf_path = "/home/zhaosheng/paper4/outputs/B2A_0515/34/ddfs"
             try:
-                get_ddf_and_imgs(t0_512_path = f"/media/wurenyao/TOSHIBA EXT/4dct_niis/t0/{name}_t0.nii",
-                                t5_512_path = f"/media/wurenyao/TOSHIBA EXT/4dct_niis/t{tindex}/{name}_t{tindex}.nii",
+                get_ddf_and_imgs(t0_512_path = f"/pan/4dct_niis/t0/{name}_t0.nii",
+                                t5_512_path = f"/pan/4dct_niis/t{tindex}/{name}_t{tindex}.nii",
                                 real_ddf_128_path = f"/dataset1/4dct_0510/transform/{name}_t{tindex}_Warp.nii.gz",
                                 fake_ddf_128_path = os.path.join(ddf_path,f"34_{name}_ddf{tindex}.npy"))
             except Exception as e:

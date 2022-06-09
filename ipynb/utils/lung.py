@@ -45,8 +45,10 @@ def get_lung_mask(img):
     left_lung = lung_result['probability_images'][1]
     right_lung = lung_result['probability_images'][2]
     check_log.info(f"\t\t-> start klcc.")
+
     # left_lung= do_klcc(left_lung)
     # right_lung= do_klcc(right_lung)
+
     check_log.info(f"\t\t-> end klcc.")
     left_lung_volume = compute_volume(left_lung)
     right_lung_volume = compute_volume(right_lung)

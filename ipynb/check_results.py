@@ -18,13 +18,14 @@ import os
 import numpy as np
 from utils.ddf_tools import warp_img_npy,warp_img_nii
 from utils.lung import get_lung_mask
+from IPython import embed
 from utils.plot import plot_ct
 import os
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 from utils.log import Logger
-check_log = Logger('check.log')
+check_log = Logger('check_results.log')
 
 def get_result(ddf_real,ddf_fake,moving,fixed,t_index,savepath=None,plot=False,get_lung=True):
     result_real = warp_img_nii(fixed_filepath=fixed,moving_filepath=moving,ddf_nii_filepath=ddf_real)
@@ -62,7 +63,7 @@ def get_result_from_img(real_img_path,fake_img_path,t_index,plot=True,get_lung=T
     real = ants.image_read(real_img_path)
     fake = ants.image_read(fake_img_path)
     result = {}
-    slices = np.array([50,55,60,64,70,75,80])*2
+    slices = np.array([50,55,60])*2
     if plot:
         plot_ct(real+1000,slices,None,f"{pname} T{t_index} moved real")
         plot_ct(fake+1000,slices,None,f"{pname} T{t_index} moved fake")
@@ -75,9 +76,11 @@ def sortddf(item):
     return item.split("/")[-1].split(".")[0].split("_ddf")[-1]
 
 if __name__ == "__main__":
-    SAVE_PNG_PATH = "./pngs"
-    SAVE_FAKE_RESAMPLED_PATH = "/media/wurenyao/TOSHIBA EXT/4dct_512_resampled_fake"
-    SAVE_LUNG_MASK_PATH = "/media/wurenyao/TOSHIBA EXT/4dct_512_lung_mask"
+    SAVE_PNG_PATH = "./pngs_256"
+    SAVE_FAKE_RESAMPLED_PATH = "/pan/4dct_256_resampled_fake"
+    SAVE_LUNG_MASK_PATH = "/pan/4dct_256_lung_mask"
+    os.makedirs(SAVE_LUNG_MASK_PATH,exist_ok=True)
+    os.makedirs(SAVE_PNG_PATH,exist_ok=True)
     files = sorted([os.path.join(SAVE_FAKE_RESAMPLED_PATH,file) for file in os.listdir(SAVE_FAKE_RESAMPLED_PATH) if ".nii.gz" in file])
     pnames = sorted(list(set([file.split("/")[-1].split("_")[0] for file in files])))
     check_log.info(f'#Pnames:{pnames}')
@@ -115,6 +118,7 @@ if __name__ == "__main__":
             p_index += 1
         os.makedirs(os.path.join(SAVE_PNG_PATH,f"{pname}"),exist_ok=True)
         
+        # embed()
         plt.figure(dpi=200)
         plt.title(f"Patient {pname} Left Lung")
         plt.plot(left_lung_real[1:],label="left_lung_real")
@@ -140,7 +144,7 @@ if __name__ == "__main__":
         right_lung_fake_all.append(right_lung_fake)
         check_log.info(f"\t***\tRight Lung Fake: {right_lung_fake}")
         
-    np.save("right_lung_fake_all.npy",right_lung_fake_all)
-    np.save("left_lung_fake_all.npy",left_lung_fake_all)
-    np.save("right_lung_real_all.npy",right_lung_real_all)
-    np.save("left_lung_real_all.npy",left_lung_real_all)
+    np.save("right_lung_fake_all_256.npy",right_lung_fake_all)
+    np.save("left_lung_fake_all_256.npy",left_lung_fake_all)
+    np.save("right_lung_real_all_256.npy",right_lung_real_all)
+    np.save("left_lung_real_all_256.npy",left_lung_real_all)
