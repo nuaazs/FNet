@@ -1,0 +1,17 @@
+2022-06-16 10:53:35 [main.py:31] cli INFO - Version:3.0.6
+2022-06-16 10:53:35 [core.py:228] get_user_info INFO - Get user information.
+2022-06-16 10:53:35 [core.py:586] token_refresh INFO - Token has been refreshed.
+2022-06-16 10:53:56 [main.py:31] cli INFO - Version:3.0.6
+2022-06-16 10:53:56 [core.py:228] get_user_info INFO - Get user information.
+2022-06-16 10:53:56 [core.py:586] token_refresh INFO - Token has been refreshed.
+2022-06-16 10:53:56 [core.py:123] get_file_list INFO - Get the list of parent_file_id root.
+2022-06-16 10:53:58 [core.py:284] create_file INFO - Create file output_niis in file root.
+2022-06-16 10:53:58 [utils.py:33] get_sha1 INFO - Calculate sha1 of file output_niis/349_329869_input.nii.gz.
+2022-06-16 10:53:58 [utils.py:52] get_sha1 INFO - The SHA1 of file output_niis/349_329869_input.nii.gz is 4331eaf761a372bd9df5a23ef43d32b59e824112.
+2022-06-16 10:53:58 [core.py:284] create_file INFO - Create file 349_329869_input.nii.gz in file 62aa9b465e397f47513a4c388b3fdbe830f4e5f4.
+2022-06-16 10:54:05 [utils.py:33] get_sha1 INFO - Calculate sha1 of file output_niis/349_329869_t3_fake.nii.gz.
+2022-06-16 10:54:05 [utils.py:52] get_sha1 INFO - The SHA1 of file output_niis/349_329869_t3_fake.nii.gz is 299811daa0fbc83b77700fc0f692cffbf347f1e1.
+2022-06-16 10:54:05 [core.py:284] create_file INFO - Create file 349_329869_t3_fake.nii.gz in file 62aa9b465e397f47513a4c388b3fdbe830f4e5f4.
+2022-06-16 10:54:06 [utils.py:33] get_sha1 INFO - Calculate sha1 of file output_niis/349_329869_t3_real.nii.gz.
+2022-06-16 10:54:06 [utils.py:52] get_sha1 INFO - The SHA1 of file output_niis/349_329869_t3_real.nii.gz is cdcf442374b6e9fd7965c6bd5df2a5356785ee23.
+2022-06-16 10:54:06 [core.py:284] create_file INFO - Create file 349_329869_t3_real.nii.gz in file 62aa9b465e397f47513a4c388b3fdbe830f4e5f4.

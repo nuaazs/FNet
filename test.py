@@ -10,26 +10,7 @@ from torch.nn import MSELoss,L1Loss
 from monai.losses import MaskedLoss
 torch.multiprocessing.set_sharing_strategy('file_system')
 from monai.networks.utils import train_mode,eval_mode,save_state
-import logging
 import argparse
-from utils import show_results,show_error,show_mask
-from monai.data import Dataset, DataLoader, create_test_image_3d, decollate_batch
-from monai.transforms import (
-    AddChanneld,
-    Compose,
-    LoadImaged,
-    RandAffined,
-    Resized,
-    ScaleIntensityRanged,
-    EnsureTyped,
-    RandZoomd,
-    RandRotate90d,
-    RandFlipd,
-    SaveImaged,
-    Invertd,
-    Activationsd,
-    AsDiscreted
-)
 
 torch.cuda.empty_cache()
  
@@ -38,20 +19,20 @@ monai.utils.set_determinism(seed=0)
 
 parser = argparse.ArgumentParser(description='')
 parser.add_argument('--name', type=str, default="tnet",help='')
-
-parser.add_argument('--istry', action='store_true', default=False,help='')
 parser.add_argument('--B2A', action='store_true', default=False,help='')
 parser.add_argument('--load', type=int, default=0,help='')
 args = parser.parse_args()
-
+image_loss = L1Loss()
 
 load = args.load
 
-os.makedirs(f"./outputs/{args.name}/{load}/images",exist_ok=True)
-os.makedirs(f"./outputs/{args.name}/{load}/ddfs",exist_ok=True)
+output_image_path = f"./results/{args.name}/{load}/images"
+output_ddf_path = f"./results/{args.name}/{load}/ddfs"
+os.makedirs(output_image_path,exist_ok=True)
+os.makedirs(output_ddf_path,exist_ok=True)
 
 # DataLoader
-val_loader,_ = getDataLoader(batch_size=1,num_workers=1,istry=args.istry)
+_,val_loader = getDataLoader(batch_size=1,num_workers=0,istry=False,mode="test")
 
 net = Net()
 print('# generator parameters:', sum(param.numel() for param in net.parameters()))
@@ -68,39 +49,65 @@ def save_nii(tx,epoch,filename,save_npy_path="./npy"):
 
 
 with eval_mode(net):
+    epoch_loss_t1,epoch_loss_t2,epoch_loss_t3,epoch_loss_t4,epoch_loss_t5= 0,0,0,0,0
     with torch.no_grad():
         step = 0
         for index,batch_data in enumerate(val_loader):
             step += 1
             t0_image = batch_data["t0_image"].cuda()
-            # _shape = batch_data["t0_image"].shape
-            # _max = batch_data["t0_image"].max()
-            # _min = batch_data["t0_image"].min()
             results = net(t0_image)
-            ddf1,ddf2,ddf3,ddf4,ddf5 = results
+            ddf01,ddf02,ddf03,ddf04,ddf05,t1,t2,t3,t4,t5 = results
 
-            # ddf1,ddf2,ddf3,ddf4,ddf5,t1,t2,t3,t4,t5 = results
-            # batch_data["fake_t1"] = t1
-            # batch_data["fake_t2"] = t2
-            # batch_data["fake_t3"] = t3
-            # batch_data["fake_t4"] = t4
-            # batch_data["fake_t5"] = t5
+            if not args.B2A:
+                loss_image_t1 = image_loss(t1,batch_data["t1_image"].cuda())
+                loss_image_t2 = image_loss(t2,batch_data["t2_image"].cuda())
+                loss_image_t3 = image_loss(t3,batch_data["t3_image"].cuda())
+                loss_image_t4 = image_loss(t4,batch_data["t4_image"].cuda())
+                loss_image_t5 = image_loss(t5,batch_data["t5_image"].cuda())
+            else:
+                loss_image_t1 = image_loss(ddf01,batch_data["t9_image"].cuda())
+                loss_image_t2 = image_loss(ddf02,batch_data["t8_image"].cuda())
+                loss_image_t3 = image_loss(ddf03,batch_data["t7_image"].cuda())
+                loss_image_t4 = image_loss(ddf04,batch_data["t6_image"].cuda())
+                loss_image_t5 = image_loss(ddf05,batch_data["t5_image"].cuda())
 
-            batch_data["ddf1"] = ddf1
-            batch_data["ddf2"] = ddf2
-            batch_data["ddf3"] = ddf3
-            batch_data["ddf4"] = ddf4
-            batch_data["ddf5"] = ddf5
+            epoch_loss_t1 += loss_image_t1.item()
+            epoch_loss_t2 += loss_image_t2.item()
+            epoch_loss_t3 += loss_image_t3.item()
+            epoch_loss_t4 += loss_image_t4.item()
+            epoch_loss_t5 += loss_image_t5.item()
             
             if not args.B2A:
-                save_nii(ddf1,load,batch_data["pid"][0]+'_ddf1',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
-                save_nii(ddf2,load,batch_data["pid"][0]+'_ddf2',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
-                save_nii(ddf3,load,batch_data["pid"][0]+'_ddf3',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
-                save_nii(ddf4,load,batch_data["pid"][0]+'_ddf4',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
-                save_nii(ddf5,load,batch_data["pid"][0]+'_ddf5',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
+                save_nii(ddf01,load,batch_data["pid"][0]+'_ddf1',save_npy_path=output_ddf_path)
+                save_nii(ddf02,load,batch_data["pid"][0]+'_ddf2',save_npy_path=output_ddf_path)
+                save_nii(ddf03,load,batch_data["pid"][0]+'_ddf3',save_npy_path=output_ddf_path)
+                save_nii(ddf04,load,batch_data["pid"][0]+'_ddf4',save_npy_path=output_ddf_path)
+                save_nii(ddf05,load,batch_data["pid"][0]+'_ddf5',save_npy_path=output_ddf_path)
+                
+                save_nii(t1,load,batch_data["pid"][0]+'_t1',save_npy_path=output_image_path)
+                save_nii(t2,load,batch_data["pid"][0]+'_t2',save_npy_path=output_image_path)
+                save_nii(t3,load,batch_data["pid"][0]+'_t3',save_npy_path=output_image_path)
+                save_nii(t4,load,batch_data["pid"][0]+'_t4',save_npy_path=output_image_path)
+                save_nii(t5,load,batch_data["pid"][0]+'_t5',save_npy_path=output_image_path)
+                save_nii(batch_data["t0_image"],load,batch_data["pid"][0]+'_t0_real',save_npy_path=output_image_path)
+                save_nii(batch_data["t1_image"],load,batch_data["pid"][0]+'_t1_real',save_npy_path=output_image_path)
+                save_nii(batch_data["t2_image"],load,batch_data["pid"][0]+'_t2_real',save_npy_path=output_image_path)
+                save_nii(batch_data["t3_image"],load,batch_data["pid"][0]+'_t3_real',save_npy_path=output_image_path)
+                save_nii(batch_data["t4_image"],load,batch_data["pid"][0]+'_t4_real',save_npy_path=output_image_path)
+                save_nii(batch_data["t5_image"],load,batch_data["pid"][0]+'_t5_real',save_npy_path=output_image_path)
             else:
-                save_nii(ddf1,load,batch_data["pid"][0]+'_ddf9',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
-                save_nii(ddf2,load,batch_data["pid"][0]+'_ddf8',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
-                save_nii(ddf3,load,batch_data["pid"][0]+'_ddf7',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
-                save_nii(ddf4,load,batch_data["pid"][0]+'_ddf6',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
-                save_nii(ddf5,load,batch_data["pid"][0]+'_ddf5',save_npy_path=f"./outputs/{args.name}/{load}/ddfs")
+                save_nii(ddf01,load,batch_data["pid"][0]+'_ddf9',save_npy_path=output_ddf_path)
+                save_nii(ddf02,load,batch_data["pid"][0]+'_ddf8',save_npy_path=output_ddf_path)
+                save_nii(ddf03,load,batch_data["pid"][0]+'_ddf7',save_npy_path=output_ddf_path)
+                save_nii(ddf04,load,batch_data["pid"][0]+'_ddf6',save_npy_path=output_ddf_path)
+                save_nii(ddf05,load,batch_data["pid"][0]+'_ddf5',save_npy_path=output_ddf_path)
+                save_nii(t1,load,batch_data["pid"][0]+'_t9',save_npy_path=output_image_path)
+                save_nii(t2,load,batch_data["pid"][0]+'_t8',save_npy_path=output_image_path)
+                save_nii(t3,load,batch_data["pid"][0]+'_t7',save_npy_path=output_image_path)
+                save_nii(t4,load,batch_data["pid"][0]+'_t6',save_npy_path=output_image_path)
+                save_nii(t5,load,batch_data["pid"][0]+'_t5',save_npy_path=output_image_path)
+                save_nii(batch_data["t1_image"],load,batch_data["pid"][0]+'_t9_real',save_npy_path=output_image_path)
+                save_nii(batch_data["t2_image"],load,batch_data["pid"][0]+'_t8_real',save_npy_path=output_image_path)
+                save_nii(batch_data["t3_image"],load,batch_data["pid"][0]+'_t7_real',save_npy_path=output_image_path)
+                save_nii(batch_data["t4_image"],load,batch_data["pid"][0]+'_t6_real',save_npy_path=output_image_path)
+                save_nii(batch_data["t5_image"],load,batch_data["pid"][0]+'_t5_real',save_npy_path=output_image_path)

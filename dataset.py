@@ -20,11 +20,7 @@ from monai.transforms import (
 
 
 def getDataLoader(batch_size=1,num_workers=5,istry=False,mode="train"):
-    data_dir = "/dataset1/4dct_0510/resampled"
-    # test_data_dir = "/dataset1/4dct_0510/resampled"
-    transform_dir = "/dataset1/4dct_0510/transform"
-    # test_trans_dir = "/dataset1/4dct_0510/transform"
-    
+    data_dir = "/mnt/zhaosheng/4dct/resampled"
     data_inputs_reample = []
     for item in [_file.split("_")[0] for _file in os.listdir(data_dir) if "t9" in _file]:
         if item not in data_inputs_reample:
@@ -32,7 +28,7 @@ def getDataLoader(batch_size=1,num_workers=5,istry=False,mode="train"):
     
     data_inputs = []
     
-    for item in [_file.split("_")[0] for _file in os.listdir(transform_dir) if "t9" in _file]:
+    for item in [_file.split("_")[0] for _file in os.listdir(data_dir) if "t9" in _file]:
         if (item not in data_inputs) and (item in data_inputs_reample):
             add = True
             for tt in range(10):
@@ -53,15 +49,6 @@ def getDataLoader(batch_size=1,num_workers=5,istry=False,mode="train"):
             "t7_image": os.path.join(data_dir,f"{idx}_t7_resampled.nii"),
             "t8_image": os.path.join(data_dir,f"{idx}_t8_resampled.nii"),
             "t9_image": os.path.join(data_dir,f"{idx}_t9_resampled.nii"),
-            "t1_trans": os.path.join(transform_dir,f"{idx}_t1_Warp.nii.gz"),
-            "t2_trans": os.path.join(transform_dir,f"{idx}_t2_Warp.nii.gz"),
-            "t3_trans": os.path.join(transform_dir,f"{idx}_t3_Warp.nii.gz"),
-            "t4_trans": os.path.join(transform_dir,f"{idx}_t4_Warp.nii.gz"),
-            "t5_trans": os.path.join(transform_dir,f"{idx}_t5_Warp.nii.gz"),
-            "t6_trans": os.path.join(transform_dir,f"{idx}_t6_Warp.nii.gz"),
-            "t7_trans": os.path.join(transform_dir,f"{idx}_t7_Warp.nii.gz"),
-            "t8_trans": os.path.join(transform_dir,f"{idx}_t8_Warp.nii.gz"),
-            "t9_trans": os.path.join(transform_dir,f"{idx}_t9_Warp.nii.gz"),
             "pid": f"{idx}",
         }
         for idx in sorted(data_inputs)
@@ -70,30 +57,23 @@ def getDataLoader(batch_size=1,num_workers=5,istry=False,mode="train"):
     if istry:
         train_files, val_files = data_dicts[:10], data_dicts[-10:]
     else:
-        train_files, val_files = data_dicts, data_dicts[-20:]
-    print(val_files)
+        total_length = len(data_inputs)
+        train_files, val_files = data_dicts[:-1*int(total_length/5)], data_dicts[-1*int(total_length/5):]
+        print(f"Total data: {total_length} patients. Used {total_length-int(total_length/5)} for train and {int(total_length/5)} for test.")
     train_transforms = Compose(
         [
             LoadImaged(
-                keys=["t0_image","t1_image","t2_image","t3_image","t4_image","t5_image","t6_image","t7_image","t8_image","t9_image",
-                        "t1_trans","t2_trans","t3_trans","t4_trans","t5_trans","t6_trans","t7_trans","t8_trans","t9_trans"],
+                keys=["t0_image","t1_image","t2_image","t3_image","t4_image","t5_image","t6_image","t7_image","t8_image","t9_image"],
             ),
             AddChanneld(
                 keys=["t0_image","t1_image","t2_image","t3_image","t4_image","t5_image","t6_image","t7_image","t8_image","t9_image"],
             ),
-            AsChannelFirstd(
-                keys=["t1_trans","t2_trans","t3_trans","t4_trans","t5_trans","t6_trans","t7_trans","t8_trans","t9_trans"],channel_dim=-1, allow_missing_keys=False
-            ),
-            SqueezeDimd(
-                keys=["t1_trans","t2_trans","t3_trans","t4_trans","t5_trans","t6_trans","t7_trans","t8_trans","t9_trans"],dim=-1, allow_missing_keys=False
-            ),
             ScaleIntensityRanged(
                 keys=["t0_image","t1_image","t2_image","t3_image","t4_image","t5_image","t6_image","t7_image","t8_image","t9_image"],
-                a_min=-1000, a_max=2000, b_min=0.0, b_max=1.0, clip=True,
+                a_min=-285, a_max=3770, b_min=0.0, b_max=1.0, clip=True,
             ),
             EnsureTyped(
-                keys=["t0_image","t1_image","t2_image","t3_image","t4_image","t5_image","t6_image","t7_image","t8_image","t9_image",
-                        "t1_trans","t2_trans","t3_trans","t4_trans","t5_trans","t6_trans","t7_trans","t8_trans","t9_trans"],
+                keys=["t0_image","t1_image","t2_image","t3_image","t4_image","t5_image","t6_image","t7_image","t8_image","t9_image"],
             ),
         ]
     )
@@ -109,10 +89,7 @@ def getDataLoader(batch_size=1,num_workers=5,istry=False,mode="train"):
         return 0,val_loader
 
 if __name__ == "__main__":
-    train_loader,val_loader = getDataLoader(batch_size=1,num_workers=5,istry=True)
-
+    train_loader,val_loader = getDataLoader(batch_size=1,num_workers=0,istry=False)
     for batch_data in train_loader:
         t0_image = batch_data["t0_image"].cuda()
-        t1_trans = batch_data["t1_trans"].cuda()
         print(t0_image.shape)
-        print(t1_trans.shape)

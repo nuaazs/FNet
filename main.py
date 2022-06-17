@@ -8,25 +8,28 @@ from nets import Net
 from dataset import getDataLoader
 from torch.nn import MSELoss,L1Loss
 from monai.losses import MaskedLoss
+import torch.multiprocessing
 torch.multiprocessing.set_sharing_strategy('file_system')
 from monai.networks.utils import train_mode,eval_mode,save_state
 import logging
 import argparse
 from utils import show_results,show_error,show_mask
-#from corpwechatbot.app import AppMsgSender
-#from corpwechatbot import CorpWechatBot
+# from corpwechatbot.app import AppMsgSender
+# from corpwechatbot import CorpWechatBot
 torch.cuda.empty_cache()
-#wechat = AppMsgSender()
-
+# wechat = AppMsgSender()
+# wechat.send_text(content="开始训练 FNet")
+torch.backends.cudnn.benchmark = True
     
 os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
 monai.utils.set_determinism(seed=0)
 
+
 parser = argparse.ArgumentParser(description='')
 parser.add_argument('--name', type=str, default="tnet",help='')
 parser.add_argument('--batch_size', type=int, default=2,help='')
-parser.add_argument('--num_workers', type=int, default=20,help='')
-parser.add_argument('--epochs', type=int, default=100,help='')
+parser.add_argument('--num_workers', type=int, default=0,help='')
+parser.add_argument('--epochs', type=int, default=200,help='')
 parser.add_argument('--val_interval', type=int, default=1,help='')
 parser.add_argument('--save_interval', type=int, default=5,help='')
 parser.add_argument('--istry', action='store_true', default=False,help='')
@@ -35,7 +38,7 @@ parser.add_argument('--load', type=int, default=0,help='')
 parser.add_argument('--dataset_type',type=str,default="ct",help='')
 args = parser.parse_args()
 
-# wechat.send_text(content="训练完成！")
+
 
 board_path = f"./runs/{args.name}"
 os.makedirs(board_path,exist_ok=True)
@@ -73,30 +76,28 @@ for epoch in range(args.load,args.load+args.epochs):
             step += 1
             optimizer.zero_grad()
             t0_image = batch_data["t0_image"].cuda()
-
-            # t1_trans = batch_data["t1_trans"].cuda()
             results = net(t0_image)
-            ddf1,ddf2,ddf3,ddf4,ddf5 = results
+            ddf01,ddf02,ddf03,ddf04,ddf05,t1,t2,t3,t4,t5 = results
 
             if not args.B2A:
-                loss_ddf1 = image_loss(ddf1,batch_data["t1_trans"].cuda())
-                loss_ddf2 = image_loss(ddf2,batch_data["t2_trans"].cuda())
-                loss_ddf3 = image_loss(ddf3,batch_data["t3_trans"].cuda())
-                loss_ddf4 = image_loss(ddf4,batch_data["t4_trans"].cuda())
-                loss_ddf5 = image_loss(ddf5,batch_data["t5_trans"].cuda())
+                loss_image_t1 = image_loss(t1,batch_data["t1_image"].cuda())
+                loss_image_t2 = image_loss(t2,batch_data["t2_image"].cuda())
+                loss_image_t3 = image_loss(t3,batch_data["t3_image"].cuda())
+                loss_image_t4 = image_loss(t4,batch_data["t4_image"].cuda())
+                loss_image_t5 = image_loss(t5,batch_data["t5_image"].cuda())
             else:
-                loss_ddf1 = image_loss(ddf1,batch_data["t9_trans"].cuda())
-                loss_ddf2 = image_loss(ddf2,batch_data["t8_trans"].cuda())
-                loss_ddf3 = image_loss(ddf3,batch_data["t7_trans"].cuda())
-                loss_ddf4 = image_loss(ddf4,batch_data["t6_trans"].cuda())
-                loss_ddf5 = image_loss(ddf5,batch_data["t5_trans"].cuda())
+                loss_image_t1 = image_loss(ddf01,batch_data["t9_image"].cuda())
+                loss_image_t2 = image_loss(ddf02,batch_data["t8_image"].cuda())
+                loss_image_t3 = image_loss(ddf03,batch_data["t7_image"].cuda())
+                loss_image_t4 = image_loss(ddf04,batch_data["t6_image"].cuda())
+                loss_image_t5 = image_loss(ddf05,batch_data["t5_image"].cuda())
 
-            epoch_loss_t1 += loss_ddf1.item()
-            epoch_loss_t2 += loss_ddf2.item()
-            epoch_loss_t3 += loss_ddf3.item()
-            epoch_loss_t4 += loss_ddf4.item()
-            epoch_loss_t5 += loss_ddf5.item()
-            loss = loss_ddf1+loss_ddf2+loss_ddf3+loss_ddf4+loss_ddf5
+            epoch_loss_t1 += loss_image_t1.item()
+            epoch_loss_t2 += loss_image_t2.item()
+            epoch_loss_t3 += loss_image_t3.item()
+            epoch_loss_t4 += loss_image_t4.item()
+            epoch_loss_t5 += loss_image_t5.item()
+            loss = loss_image_t1+loss_image_t2+loss_image_t3+loss_image_t4+loss_image_t5
             loss.backward()
             optimizer.step()
         epoch_loss_t1 /= step
@@ -104,6 +105,7 @@ for epoch in range(args.load,args.load+args.epochs):
         epoch_loss_t3 /= step
         epoch_loss_t4 /= step
         epoch_loss_t5 /= step
+        total_loss_train = epoch_loss_t1+ epoch_loss_t2+ epoch_loss_t3+ epoch_loss_t4+ epoch_loss_t5
         writer.add_scalar("learning rate",optimizer.state_dict()['param_groups'][0]['lr'], global_step=epoch, walltime=None)
         
         writer.add_scalar("t1",epoch_loss_t1, global_step=epoch, walltime=None)
@@ -111,6 +113,7 @@ for epoch in range(args.load,args.load+args.epochs):
         writer.add_scalar("t3",epoch_loss_t3, global_step=epoch, walltime=None)
         writer.add_scalar("t4",epoch_loss_t4, global_step=epoch, walltime=None)
         writer.add_scalar("t5",epoch_loss_t5, global_step=epoch, walltime=None)
+        print(f"Train Loss: {total_loss_train:.5f}\nVal average -> \n\tloss t1: {epoch_loss_t1:.4f}\n\tloss t2: {epoch_loss_t2:.4f}\n\tloss t3: {epoch_loss_t3:.4f}\n\tloss t4: {epoch_loss_t4:.4f}\n\tloss t5: {epoch_loss_t5:.4f}")
 
     if (epoch + 1) % args.save_interval == 0:
         save_state(net.state_dict(), f"./checkpoints/{args.name}/{epoch}.ckpt")
@@ -124,26 +127,26 @@ for epoch in range(args.load,args.load+args.epochs):
                     step += 1
                     t0_image = batch_data["t0_image"].cuda()
                     results = net(t0_image)
-                    ddf1,ddf2,ddf3,ddf4,ddf5= results
+                    ddf01,ddf02,ddf03,ddf04,ddf05,t1,t2,t3,t4,t5 = results
 
                     if not args.B2A:
-                        loss_ddf1 = image_loss(ddf1,batch_data["t1_trans"].cuda())
-                        loss_ddf2 = image_loss(ddf2,batch_data["t2_trans"].cuda())
-                        loss_ddf3 = image_loss(ddf3,batch_data["t3_trans"].cuda())
-                        loss_ddf4 = image_loss(ddf4,batch_data["t4_trans"].cuda())
-                        loss_ddf5 = image_loss(ddf5,batch_data["t5_trans"].cuda())
+                        loss_image_t1 = image_loss(t1,batch_data["t1_image"].cuda())
+                        loss_image_t2 = image_loss(t2,batch_data["t2_image"].cuda())
+                        loss_image_t3 = image_loss(t3,batch_data["t3_image"].cuda())
+                        loss_image_t4 = image_loss(t4,batch_data["t4_image"].cuda())
+                        loss_image_t5 = image_loss(t5,batch_data["t5_image"].cuda())
                     else:
-                        loss_ddf1 = image_loss(ddf1,batch_data["t9_trans"].cuda())
-                        loss_ddf2 = image_loss(ddf2,batch_data["t8_trans"].cuda())
-                        loss_ddf3 = image_loss(ddf3,batch_data["t7_trans"].cuda())
-                        loss_ddf4 = image_loss(ddf4,batch_data["t6_trans"].cuda())
-                        loss_ddf5 = image_loss(ddf5,batch_data["t5_trans"].cuda())
+                        loss_image_t1 = image_loss(ddf01,batch_data["t9_image"].cuda())
+                        loss_image_t2 = image_loss(ddf02,batch_data["t8_image"].cuda())
+                        loss_image_t3 = image_loss(ddf03,batch_data["t7_image"].cuda())
+                        loss_image_t4 = image_loss(ddf04,batch_data["t6_image"].cuda())
+                        loss_image_t5 = image_loss(ddf05,batch_data["t5_image"].cuda())
                 
-                    epoch_loss_t1 += loss_ddf1.item()
-                    epoch_loss_t2 += loss_ddf2.item()
-                    epoch_loss_t3 += loss_ddf3.item()
-                    epoch_loss_t4 += loss_ddf4.item()
-                    epoch_loss_t5 += loss_ddf5.item()
+                    epoch_loss_t1 += loss_image_t1.item()
+                    epoch_loss_t2 += loss_image_t2.item()
+                    epoch_loss_t3 += loss_image_t3.item()
+                    epoch_loss_t4 += loss_image_t4.item()
+                    epoch_loss_t5 += loss_image_t5.item()
                 epoch_loss_t1 /= step
                 epoch_loss_t2 /= step
                 epoch_loss_t3 /= step
@@ -158,4 +161,4 @@ for epoch in range(args.load,args.load+args.epochs):
                 print(f"Val Loss: {total_loss_val:.5f}\nVal average -> \n\tloss t1: {epoch_loss_t1:.4f}\n\tloss t2: {epoch_loss_t2:.4f}\n\tloss t3: {epoch_loss_t3:.4f}\n\tloss t4: {epoch_loss_t4:.4f}\n\tloss t5: {epoch_loss_t5:.4f}")
         scheduler.step(total_loss_val)
 
-#wechat.send_text(content="训练完成！")
+# wechat.send_text(content="训练完成！")
