@@ -20,7 +20,7 @@ from monai.networks.layers.factories import Act, Norm
 from monai.networks.layers.simplelayers import SkipConnection
 from monai.utils import alias, deprecated_arg, export
 
-from cbam import CBAM3d
+from backbone.cbam import CBAM3d
 __all__ = ["CBAMUNet", "cbamunet"]
 
 
