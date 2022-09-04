@@ -3,7 +3,6 @@ import os
 import torch
 import monai
 import numpy as np
-import ants
 from backbone.nets import FNet
 from datasets.dataset import getDataLoader
 from torch.nn import MSELoss,L1Loss
@@ -13,7 +12,6 @@ torch.multiprocessing.set_sharing_strategy('file_system')
 from monai.networks.utils import train_mode,eval_mode,save_state
 import logging
 import argparse
-from utils.utils import show_results,show_error,show_mask
 from utils.save import save_nii
 import random
 torch.cuda.empty_cache()
@@ -26,8 +24,9 @@ random.seed(seed)
 np.random.seed(seed)
 torch.manual_seed(seed)
 torch.cuda.manual_seed_all(seed)
+
 parser = argparse.ArgumentParser(description='')
-parser.add_argument('--name', type=str, default="fnet0811",help='')
+parser.add_argument('--name', type=str, default="fnet0904",help='')
 parser.add_argument('--ddf_dir', type=str, default="/mnt/zhaosheng/FNet/data/ddfs",help='')
 parser.add_argument('--img_dir', type=str, default="/mnt/zhaosheng/4dct/resampled",help='')
 parser.add_argument('--ddf_prefix', type=str, default="49",help='')
@@ -35,8 +34,8 @@ parser.add_argument('--batch_size', type=int, default=1,help='')
 parser.add_argument('--num_workers', type=int, default=0,help='')
 parser.add_argument('--epochs', type=int, default=200,help='')
 parser.add_argument('--val_interval', type=int, default=1,help='')
-parser.add_argument('--save_interval', type=int, default=10,help='')
-parser.add_argument('--save_npy_interval', type=int, default=10,help='')
+parser.add_argument('--save_interval', type=int, default=20,help='')
+parser.add_argument('--save_npy_interval', type=int, default=20,help='')
 parser.add_argument('--istry', action='store_true', default=False,help='')
 parser.add_argument('--B2A', action='store_true', default=False,help='')
 parser.add_argument('--load', type=int, default=0,help='')
@@ -73,13 +72,30 @@ if args.load > 0:
 for epoch in range(args.load,args.load+args.epochs):
     print(f"epoch {epoch + 1}/{args.load+args.epochs}")
     with train_mode(net):
-        epoch_loss_t1,epoch_loss_t2,epoch_loss_t3,epoch_loss_t4,epoch_loss_t5,epoch_loss_t6,epoch_loss_t7,epoch_loss_t8,epoch_loss_t9= 0,0,0,0,0,0,0,0,0
+        
+        image_loss_t1 = 0 
+        image_loss_t2 = 0 
+        image_loss_t3 = 0 
+        image_loss_t4 = 0 
+        image_loss_t5 = 0 
+        image_loss_t6 = 0 
+        image_loss_t7 = 0 
+        image_loss_t8 = 0 
+        image_loss_t9 = 0 
+        ddf_loss_1  = 0
+        ddf_loss_2  = 0
+        ddf_loss_3  = 0
+        ddf_loss_4  = 0
+        ddf_loss_5  = 0
+        ddf_loss_6  = 0
+        ddf_loss_7  = 0
+        ddf_loss_8  = 0
+        ddf_loss_9  = 0
         step = 0
         for batch_data in train_loader:
             step += 1
             optimizer.zero_grad()
             t0_image = batch_data["t0_image"].cuda()
-
             results = net(t0_image)
             ddf1,ddf2,ddf3,ddf4,ddf5,ddf6,ddf7,ddf8,ddf9,image1,image2,image3,image4,image5,image6,image7,image8,image9 = results
 
@@ -104,41 +120,77 @@ for epoch in range(args.load,args.load+args.epochs):
                 loss_ddf_8 = image_loss(ddf8,batch_data["ddf8_image"].cuda())
                 loss_ddf_9 = image_loss(ddf9,batch_data["ddf9_image"].cuda())
 
-            epoch_loss_t1 += loss_image_t1.item() + loss_ddf_1.item()
-            epoch_loss_t2 += loss_image_t2.item() + loss_ddf_2.item()
-            epoch_loss_t3 += loss_image_t3.item() + loss_ddf_3.item()
-            epoch_loss_t4 += loss_image_t4.item() + loss_ddf_4.item()
-            epoch_loss_t5 += loss_image_t5.item() + loss_ddf_5.item()
-            epoch_loss_t6 += loss_image_t6.item() + loss_ddf_6.item()
-            epoch_loss_t7 += loss_image_t7.item() + loss_ddf_7.item()
-            epoch_loss_t8 += loss_image_t8.item() + loss_ddf_8.item()
-            epoch_loss_t9 += loss_image_t9.item() + loss_ddf_9.item()
+            image_loss_t1 += loss_image_t1.item()
+            image_loss_t2 += loss_image_t2.item()
+            image_loss_t3 += loss_image_t3.item()
+            image_loss_t4 += loss_image_t4.item()
+            image_loss_t5 += loss_image_t5.item()
+            image_loss_t6 += loss_image_t6.item()
+            image_loss_t7 += loss_image_t7.item()
+            image_loss_t8 += loss_image_t8.item()
+            image_loss_t9 += loss_image_t9.item()
+
+            ddf_loss_1 += loss_ddf_1.item()
+            ddf_loss_2 += loss_ddf_2.item()
+            ddf_loss_3 += loss_ddf_3.item()
+            ddf_loss_4 += loss_ddf_4.item()
+            ddf_loss_5 += loss_ddf_5.item()
+            ddf_loss_6 += loss_ddf_6.item()
+            ddf_loss_7 += loss_ddf_7.item()
+            ddf_loss_8 += loss_ddf_8.item()
+            ddf_loss_9 += loss_ddf_9.item()
             print(loss_image_t9.item(),loss_ddf_9.item())
             loss = loss_image_t1+loss_image_t2+loss_image_t3+loss_image_t4+loss_image_t5+loss_image_t6+loss_image_t7+loss_image_t8+loss_image_t9
+            loss += loss_ddf_1 + loss_ddf_2 + loss_ddf_3 + loss_ddf_4 + loss_ddf_5 + loss_ddf_6 + loss_ddf_7 + loss_ddf_8 + loss_ddf_9
             loss.backward()
             optimizer.step()
-        epoch_loss_t1 /= step
-        epoch_loss_t2 /= step
-        epoch_loss_t3 /= step
-        epoch_loss_t4 /= step
-        epoch_loss_t5 /= step
-        epoch_loss_t6 /= step
-        epoch_loss_t7 /= step
-        epoch_loss_t8 /= step
-        epoch_loss_t9 /= step
-        total_loss_train = epoch_loss_t1+ epoch_loss_t2+ epoch_loss_t3+ epoch_loss_t4+ epoch_loss_t5+ epoch_loss_t6+ epoch_loss_t7+ epoch_loss_t8+ epoch_loss_t9
+        image_loss_t1 /= step
+        image_loss_t2 /= step
+        image_loss_t3 /= step
+        image_loss_t4 /= step
+        image_loss_t5 /= step
+        image_loss_t6 /= step
+        image_loss_t7 /= step
+        image_loss_t8 /= step
+        image_loss_t9 /= step
+
+        ddf_loss_1 /= step
+        ddf_loss_2 /= step
+        ddf_loss_3 /= step
+        ddf_loss_4 /= step
+        ddf_loss_5 /= step
+        ddf_loss_6 /= step
+        ddf_loss_7 /= step
+        ddf_loss_8 /= step
+        ddf_loss_9 /= step
+
+        total_loss_train = image_loss_t1 + image_loss_t2 + image_loss_t3 + image_loss_t4 + image_loss_t5 \
+             + image_loss_t6 + image_loss_t7 + image_loss_t8 + image_loss_t9 \
+             + ddf_loss_1 + ddf_loss_2 + ddf_loss_3 + ddf_loss_4 + ddf_loss_5 \
+             + ddf_loss_6 + ddf_loss_7 + ddf_loss_8 + ddf_loss_9
 
         writer.add_scalar("learning rate",optimizer.state_dict()['param_groups'][0]['lr'], global_step=epoch, walltime=None)
-        writer.add_scalar("t1",epoch_loss_t1, global_step=epoch, walltime=None)
-        writer.add_scalar("t2",epoch_loss_t2, global_step=epoch, walltime=None)
-        writer.add_scalar("t3",epoch_loss_t3, global_step=epoch, walltime=None)
-        writer.add_scalar("t4",epoch_loss_t4, global_step=epoch, walltime=None)
-        writer.add_scalar("t5",epoch_loss_t5, global_step=epoch, walltime=None)
-        writer.add_scalar("t6",epoch_loss_t6, global_step=epoch, walltime=None)
-        writer.add_scalar("t7",epoch_loss_t7, global_step=epoch, walltime=None)
-        writer.add_scalar("t8",epoch_loss_t8, global_step=epoch, walltime=None)
-        writer.add_scalar("t9",epoch_loss_t9, global_step=epoch, walltime=None)
-        print(f"Train Loss: {total_loss_train:.5f}\nTrain average -> \n\tloss t1: {epoch_loss_t1:.4f}\n\tloss t2: {epoch_loss_t2:.4f}\n\tloss t3: {epoch_loss_t3:.4f}\n\tloss t4: {epoch_loss_t4:.4f}\n\tloss t5: {epoch_loss_t5:.4f}\n\tloss t6: {epoch_loss_t6:.4f}\n\tloss t7: {epoch_loss_t7:.4f}\n\tloss t8: {epoch_loss_t8:.4f}\n\tloss t9: {epoch_loss_t9:.4f}")
+        writer.add_scalar("t1",image_loss_t1, global_step=epoch, walltime=None)
+        writer.add_scalar("t2",image_loss_t2, global_step=epoch, walltime=None)
+        writer.add_scalar("t3",image_loss_t3, global_step=epoch, walltime=None)
+        writer.add_scalar("t4",image_loss_t4, global_step=epoch, walltime=None)
+        writer.add_scalar("t5",image_loss_t5, global_step=epoch, walltime=None)
+        writer.add_scalar("t6",image_loss_t6, global_step=epoch, walltime=None)
+        writer.add_scalar("t7",image_loss_t7, global_step=epoch, walltime=None)
+        writer.add_scalar("t8",image_loss_t8, global_step=epoch, walltime=None)
+        writer.add_scalar("t9",image_loss_t9, global_step=epoch, walltime=None)
+
+        writer.add_scalar("ddf1",ddf_loss_1, global_step=epoch, walltime=None)
+        writer.add_scalar("ddf2",ddf_loss_2, global_step=epoch, walltime=None)
+        writer.add_scalar("ddf3",ddf_loss_3, global_step=epoch, walltime=None)
+        writer.add_scalar("ddf4",ddf_loss_4, global_step=epoch, walltime=None)
+        writer.add_scalar("ddf5",ddf_loss_5, global_step=epoch, walltime=None)
+        writer.add_scalar("ddf6",ddf_loss_6, global_step=epoch, walltime=None)
+        writer.add_scalar("ddf7",ddf_loss_7, global_step=epoch, walltime=None)
+        writer.add_scalar("ddf8",ddf_loss_8, global_step=epoch, walltime=None)
+        writer.add_scalar("ddf9",ddf_loss_9, global_step=epoch, walltime=None)
+        print(f"Train Loss: {total_loss_train:.5f}\nTrain average -> \n\tloss t1: {image_loss_t1:.4f}\n\tloss t2: {image_loss_t2:.4f}\n\tloss t3: {image_loss_t3:.4f}\n\tloss t4: {image_loss_t4:.4f}\n\tloss t5: {image_loss_t5:.4f}\n\tloss t6: {image_loss_t6:.4f}\n\tloss t7: {image_loss_t7:.4f}\n\tloss t8: {image_loss_t8:.4f}\n\tloss t9: {image_loss_t9:.4f}")
+        print(f"DDF Loss: \n\tloss t1: {ddf_loss_1:.4f}\n\tloss t2: {ddf_loss_2:.4f}\n\tloss t3: {ddf_loss_3:.4f}\n\tloss t4: {ddf_loss_4:.4f}\n\tloss t5: {ddf_loss_5:.4f}\n\tloss t6: {ddf_loss_6:.4f}\n\tloss t7: {ddf_loss_7:.4f}\n\tloss t8: {ddf_loss_8:.4f}\n\tloss t9: {ddf_loss_9:.4f}")
 
     if (epoch + 1) % args.save_interval == 0:
         save_state(net.state_dict(), f"./checkpoints/{args.name}/{epoch}.ckpt")
