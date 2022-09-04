@@ -8,9 +8,10 @@ from utils.dsb_lung import get_lung_mask
 from scipy.signal import savgol_filter
 from IPython import embed
 
-output_path = "/mnt/zhaosheng/FNet/results/fnet0811"
-real_nii_path = "/mnt/zhaosheng/4dct/resampled"
-EPOCH = 59
+from cfg import real_nii_path
+from cfg import tumor_path
+from cfg import output_path
+from cfg import EPOCH
 
 def get_result(output_path,epoch,type="_ddf_fake"):
     return sorted([os.path.join(output_path,_file) for _file in os.listdir(output_path) 

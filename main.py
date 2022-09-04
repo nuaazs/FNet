@@ -79,6 +79,7 @@ for epoch in range(args.load,args.load+args.epochs):
             step += 1
             optimizer.zero_grad()
             t0_image = batch_data["t0_image"].cuda()
+
             results = net(t0_image)
             ddf1,ddf2,ddf3,ddf4,ddf5,ddf6,ddf7,ddf8,ddf9,image1,image2,image3,image4,image5,image6,image7,image8,image9 = results
 
@@ -93,15 +94,26 @@ for epoch in range(args.load,args.load+args.epochs):
                 loss_image_t8 = image_loss(image8,batch_data["t8_image"].cuda())
                 loss_image_t9 = image_loss(image9,batch_data["t9_image"].cuda())
 
-            epoch_loss_t1 += loss_image_t1.item()
-            epoch_loss_t2 += loss_image_t2.item()
-            epoch_loss_t3 += loss_image_t3.item()
-            epoch_loss_t4 += loss_image_t4.item()
-            epoch_loss_t5 += loss_image_t5.item()
-            epoch_loss_t6 += loss_image_t6.item()
-            epoch_loss_t7 += loss_image_t7.item()
-            epoch_loss_t8 += loss_image_t8.item()
-            epoch_loss_t9 += loss_image_t9.item()
+                loss_ddf_1 = image_loss(ddf1,batch_data["ddf1_image"].cuda())
+                loss_ddf_2 = image_loss(ddf2,batch_data["ddf2_image"].cuda())
+                loss_ddf_3 = image_loss(ddf3,batch_data["ddf3_image"].cuda())
+                loss_ddf_4 = image_loss(ddf4,batch_data["ddf4_image"].cuda())
+                loss_ddf_5 = image_loss(ddf5,batch_data["ddf5_image"].cuda())
+                loss_ddf_6 = image_loss(ddf6,batch_data["ddf6_image"].cuda())
+                loss_ddf_7 = image_loss(ddf7,batch_data["ddf7_image"].cuda())
+                loss_ddf_8 = image_loss(ddf8,batch_data["ddf8_image"].cuda())
+                loss_ddf_9 = image_loss(ddf9,batch_data["ddf9_image"].cuda())
+
+            epoch_loss_t1 += loss_image_t1.item() + loss_ddf_1.item()
+            epoch_loss_t2 += loss_image_t2.item() + loss_ddf_2.item()
+            epoch_loss_t3 += loss_image_t3.item() + loss_ddf_3.item()
+            epoch_loss_t4 += loss_image_t4.item() + loss_ddf_4.item()
+            epoch_loss_t5 += loss_image_t5.item() + loss_ddf_5.item()
+            epoch_loss_t6 += loss_image_t6.item() + loss_ddf_6.item()
+            epoch_loss_t7 += loss_image_t7.item() + loss_ddf_7.item()
+            epoch_loss_t8 += loss_image_t8.item() + loss_ddf_8.item()
+            epoch_loss_t9 += loss_image_t9.item() + loss_ddf_9.item()
+            print(loss_image_t9.item(),loss_ddf_9.item())
             loss = loss_image_t1+loss_image_t2+loss_image_t3+loss_image_t4+loss_image_t5+loss_image_t6+loss_image_t7+loss_image_t8+loss_image_t9
             loss.backward()
             optimizer.step()
@@ -149,7 +161,6 @@ for epoch in range(args.load,args.load+args.epochs):
                     real_img = torch.cat([batch_data["t1_image"],batch_data["t2_image"],batch_data["t3_image"],batch_data["t4_image"],batch_data["t5_image"],batch_data["t6_image"],batch_data["t7_image"],batch_data["t8_image"],batch_data["t9_image"]],1)
                     save_nii(tensor=fake_ddf,filename=str(epoch)+"_"+batch_data["pid"][0]+"_ddf_fake",save_npy_path=f"./results/{args.name}/")
                     save_nii(tensor=real_ddf,filename=str(epoch)+"_"+batch_data["pid"][0]+"_ddf_real",save_npy_path=f"./results/{args.name}/")
-                    
                     save_nii(tensor=fake_img,filename=str(epoch)+"_"+batch_data["pid"][0]+"_image_fake",save_npy_path=f"./results/{args.name}/")
                     save_nii(tensor=real_img,filename=str(epoch)+"_"+batch_data["pid"][0]+"_image_real",save_npy_path=f"./results/{args.name}/")
                 
