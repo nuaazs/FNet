@@ -1,3 +1,9 @@
+# Train
+```shell
+python main.py --name fnet
+```
+
+
 # Post Processing
 
 ## Step 0:
