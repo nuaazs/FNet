@@ -99,26 +99,25 @@ for epoch in range(args.load,args.load+args.epochs):
             results = net(t0_image)
             ddf1,ddf2,ddf3,ddf4,ddf5,ddf6,ddf7,ddf8,ddf9,image1,image2,image3,image4,image5,image6,image7,image8,image9 = results
 
-            if not args.B2A:
-                loss_image_t1 = image_loss(image1,batch_data["t1_image"].cuda())
-                loss_image_t2 = image_loss(image2,batch_data["t2_image"].cuda())
-                loss_image_t3 = image_loss(image3,batch_data["t3_image"].cuda())
-                loss_image_t4 = image_loss(image4,batch_data["t4_image"].cuda())
-                loss_image_t5 = image_loss(image5,batch_data["t5_image"].cuda())
-                loss_image_t6 = image_loss(image6,batch_data["t6_image"].cuda())
-                loss_image_t7 = image_loss(image7,batch_data["t7_image"].cuda())
-                loss_image_t8 = image_loss(image8,batch_data["t8_image"].cuda())
-                loss_image_t9 = image_loss(image9,batch_data["t9_image"].cuda())
+            loss_image_t1 = image_loss(image1,batch_data["t1_image"].cuda()) * 100
+            loss_image_t2 = image_loss(image2,batch_data["t2_image"].cuda()) * 100
+            loss_image_t3 = image_loss(image3,batch_data["t3_image"].cuda()) * 100
+            loss_image_t4 = image_loss(image4,batch_data["t4_image"].cuda()) * 100
+            loss_image_t5 = image_loss(image5,batch_data["t5_image"].cuda()) * 100
+            loss_image_t6 = image_loss(image6,batch_data["t6_image"].cuda()) * 100
+            loss_image_t7 = image_loss(image7,batch_data["t7_image"].cuda()) * 100
+            loss_image_t8 = image_loss(image8,batch_data["t8_image"].cuda()) * 100
+            loss_image_t9 = image_loss(image9,batch_data["t9_image"].cuda()) * 100
 
-                loss_ddf_1 = image_loss(ddf1,batch_data["ddf1_image"].cuda())
-                loss_ddf_2 = image_loss(ddf2,batch_data["ddf2_image"].cuda())
-                loss_ddf_3 = image_loss(ddf3,batch_data["ddf3_image"].cuda())
-                loss_ddf_4 = image_loss(ddf4,batch_data["ddf4_image"].cuda())
-                loss_ddf_5 = image_loss(ddf5,batch_data["ddf5_image"].cuda())
-                loss_ddf_6 = image_loss(ddf6,batch_data["ddf6_image"].cuda())
-                loss_ddf_7 = image_loss(ddf7,batch_data["ddf7_image"].cuda())
-                loss_ddf_8 = image_loss(ddf8,batch_data["ddf8_image"].cuda())
-                loss_ddf_9 = image_loss(ddf9,batch_data["ddf9_image"].cuda())
+            loss_ddf_1 = image_loss(ddf1,batch_data["ddf1_image"].cuda())
+            loss_ddf_2 = image_loss(ddf2,batch_data["ddf2_image"].cuda())
+            loss_ddf_3 = image_loss(ddf3,batch_data["ddf3_image"].cuda())
+            loss_ddf_4 = image_loss(ddf4,batch_data["ddf4_image"].cuda())
+            loss_ddf_5 = image_loss(ddf5,batch_data["ddf5_image"].cuda())
+            loss_ddf_6 = image_loss(ddf6,batch_data["ddf6_image"].cuda())
+            loss_ddf_7 = image_loss(ddf7,batch_data["ddf7_image"].cuda())
+            loss_ddf_8 = image_loss(ddf8,batch_data["ddf8_image"].cuda())
+            loss_ddf_9 = image_loss(ddf9,batch_data["ddf9_image"].cuda())
 
             image_loss_t1 += loss_image_t1.item()
             image_loss_t2 += loss_image_t2.item()
@@ -216,44 +215,70 @@ for epoch in range(args.load,args.load+args.epochs):
                     save_nii(tensor=fake_img,filename=str(epoch)+"_"+batch_data["pid"][0]+"_image_fake",save_npy_path=f"./results/{args.name}/")
                     save_nii(tensor=real_img,filename=str(epoch)+"_"+batch_data["pid"][0]+"_image_real",save_npy_path=f"./results/{args.name}/")
                 
-                if not args.B2A:
-                    loss_image_t1 = image_loss(image1,batch_data["t1_image"].cuda())
-                    loss_image_t2 = image_loss(image2,batch_data["t2_image"].cuda())
-                    loss_image_t3 = image_loss(image3,batch_data["t3_image"].cuda())
-                    loss_image_t4 = image_loss(image4,batch_data["t4_image"].cuda())
-                    loss_image_t5 = image_loss(image5,batch_data["t5_image"].cuda())
-                    loss_image_t6 = image_loss(image6,batch_data["t6_image"].cuda())
-                    loss_image_t7 = image_loss(image7,batch_data["t7_image"].cuda())
-                    loss_image_t8 = image_loss(image8,batch_data["t8_image"].cuda())
-                    loss_image_t9 = image_loss(image9,batch_data["t9_image"].cuda())
 
-                epoch_loss_t1 += loss_image_t1.item()
-                epoch_loss_t2 += loss_image_t2.item()
-                epoch_loss_t3 += loss_image_t3.item()
-                epoch_loss_t4 += loss_image_t4.item()
-                epoch_loss_t5 += loss_image_t5.item()
-                epoch_loss_t6 += loss_image_t6.item()
-                epoch_loss_t7 += loss_image_t7.item()
-                epoch_loss_t8 += loss_image_t8.item()
-                epoch_loss_t9 += loss_image_t9.item()
-            epoch_loss_t1 /= step
-            epoch_loss_t2 /= step
-            epoch_loss_t3 /= step
-            epoch_loss_t4 /= step
-            epoch_loss_t5 /= step
-            epoch_loss_t6 /= step
-            epoch_loss_t7 /= step
-            epoch_loss_t8 /= step
-            epoch_loss_t9 /= step
-            total_loss_train = epoch_loss_t1+ epoch_loss_t2+ epoch_loss_t3+ epoch_loss_t4+ epoch_loss_t5+ epoch_loss_t6+ epoch_loss_t7+ epoch_loss_t8+ epoch_loss_t9
+                loss_image_t1 = image_loss(image1,batch_data["t1_image"].cuda()) * 100
+                loss_image_t2 = image_loss(image2,batch_data["t2_image"].cuda()) * 100
+                loss_image_t3 = image_loss(image3,batch_data["t3_image"].cuda()) * 100
+                loss_image_t4 = image_loss(image4,batch_data["t4_image"].cuda()) * 100
+                loss_image_t5 = image_loss(image5,batch_data["t5_image"].cuda()) * 100
+                loss_image_t6 = image_loss(image6,batch_data["t6_image"].cuda()) * 100
+                loss_image_t7 = image_loss(image7,batch_data["t7_image"].cuda()) * 100
+                loss_image_t8 = image_loss(image8,batch_data["t8_image"].cuda()) * 100
+                loss_image_t9 = image_loss(image9,batch_data["t9_image"].cuda()) * 100
 
-            writer.add_scalar("val_t1",epoch_loss_t1, global_step=epoch, walltime=None)
-            writer.add_scalar("val_t2",epoch_loss_t2, global_step=epoch, walltime=None)
-            writer.add_scalar("val_t3",epoch_loss_t3, global_step=epoch, walltime=None)
-            writer.add_scalar("val_t4",epoch_loss_t4, global_step=epoch, walltime=None)
-            writer.add_scalar("val_t5",epoch_loss_t5, global_step=epoch, walltime=None)
-            writer.add_scalar("val_t6",epoch_loss_t6, global_step=epoch, walltime=None)
-            writer.add_scalar("val_t7",epoch_loss_t7, global_step=epoch, walltime=None)
-            writer.add_scalar("val_t8",epoch_loss_t8, global_step=epoch, walltime=None)
-            writer.add_scalar("val_t9",epoch_loss_t9, global_step=epoch, walltime=None)
-            print(f"Val Loss: {total_loss_train:.5f}\nVal average -> \n\tloss t1: {epoch_loss_t1:.4f}\n\tloss t2: {epoch_loss_t2:.4f}\n\tloss t3: {epoch_loss_t3:.4f}\n\tloss t4: {epoch_loss_t4:.4f}\n\tloss t5: {epoch_loss_t5:.4f}\n\tloss t6: {epoch_loss_t6:.4f}\n\tloss t7: {epoch_loss_t7:.4f}\n\tloss t8: {epoch_loss_t8:.4f}\n\tloss t9: {epoch_loss_t9:.4f}")
+                loss_ddf_1 = image_loss(ddf1,batch_data["ddf1_image"].cuda())
+                loss_ddf_2 = image_loss(ddf2,batch_data["ddf2_image"].cuda())
+                loss_ddf_3 = image_loss(ddf3,batch_data["ddf3_image"].cuda())
+                loss_ddf_4 = image_loss(ddf4,batch_data["ddf4_image"].cuda())
+                loss_ddf_5 = image_loss(ddf5,batch_data["ddf5_image"].cuda())
+                loss_ddf_6 = image_loss(ddf6,batch_data["ddf6_image"].cuda())
+                loss_ddf_7 = image_loss(ddf7,batch_data["ddf7_image"].cuda())
+                loss_ddf_8 = image_loss(ddf8,batch_data["ddf8_image"].cuda())
+                loss_ddf_9 = image_loss(ddf9,batch_data["ddf9_image"].cuda())
+
+                image_loss_t1 += loss_image_t1.item()
+                image_loss_t2 += loss_image_t2.item()
+                image_loss_t3 += loss_image_t3.item()
+                image_loss_t4 += loss_image_t4.item()
+                image_loss_t5 += loss_image_t5.item()
+                image_loss_t6 += loss_image_t6.item()
+                image_loss_t7 += loss_image_t7.item()
+                image_loss_t8 += loss_image_t8.item()
+                image_loss_t9 += loss_image_t9.item()
+
+                ddf_loss_1 += loss_ddf_1.item()
+                ddf_loss_2 += loss_ddf_2.item()
+                ddf_loss_3 += loss_ddf_3.item()
+                ddf_loss_4 += loss_ddf_4.item()
+                ddf_loss_5 += loss_ddf_5.item()
+                ddf_loss_6 += loss_ddf_6.item()
+                ddf_loss_7 += loss_ddf_7.item()
+                ddf_loss_8 += loss_ddf_8.item()
+                ddf_loss_9 += loss_ddf_9.item()
+                total_loss_val = image_loss_t1 + image_loss_t2 + image_loss_t3 + image_loss_t4 + image_loss_t5 \
+                                    + image_loss_t6 + image_loss_t7 + image_loss_t8 + image_loss_t9 \
+                                    + ddf_loss_1 + ddf_loss_2 + ddf_loss_3 + ddf_loss_4 + ddf_loss_5 \
+                                    + ddf_loss_6 + ddf_loss_7 + ddf_loss_8 + ddf_loss_9
+            
+
+            writer.add_scalar("val_t1",image_loss_t1, global_step=epoch, walltime=None)
+            writer.add_scalar("val_t2",image_loss_t2, global_step=epoch, walltime=None)
+            writer.add_scalar("val_t3",image_loss_t3, global_step=epoch, walltime=None)
+            writer.add_scalar("val_t4",image_loss_t4, global_step=epoch, walltime=None)
+            writer.add_scalar("val_t5",image_loss_t5, global_step=epoch, walltime=None)
+            writer.add_scalar("val_t6",image_loss_t6, global_step=epoch, walltime=None)
+            writer.add_scalar("val_t7",image_loss_t7, global_step=epoch, walltime=None)
+            writer.add_scalar("val_t8",image_loss_t8, global_step=epoch, walltime=None)
+            writer.add_scalar("val_t9",image_loss_t9, global_step=epoch, walltime=None)
+
+            writer.add_scalar("val_ddf1",ddf_loss_1, global_step=epoch, walltime=None)
+            writer.add_scalar("val_ddf2",ddf_loss_2, global_step=epoch, walltime=None)
+            writer.add_scalar("val_ddf3",ddf_loss_3, global_step=epoch, walltime=None)
+            writer.add_scalar("val_ddf4",ddf_loss_4, global_step=epoch, walltime=None)
+            writer.add_scalar("val_ddf5",ddf_loss_5, global_step=epoch, walltime=None)
+            writer.add_scalar("val_ddf6",ddf_loss_6, global_step=epoch, walltime=None)
+            writer.add_scalar("val_ddf7",ddf_loss_7, global_step=epoch, walltime=None)
+            writer.add_scalar("val_ddf8",ddf_loss_8, global_step=epoch, walltime=None)
+            writer.add_scalar("val_ddf9",ddf_loss_9, global_step=epoch, walltime=None)
+            print(f"Val Loss: {total_loss_val:.5f}\nTrain average -> \n\tloss t1: {image_loss_t1:.4f}\n\tloss t2: {image_loss_t2:.4f}\n\tloss t3: {image_loss_t3:.4f}\n\tloss t4: {image_loss_t4:.4f}\n\tloss t5: {image_loss_t5:.4f}\n\tloss t6: {image_loss_t6:.4f}\n\tloss t7: {image_loss_t7:.4f}\n\tloss t8: {image_loss_t8:.4f}\n\tloss t9: {image_loss_t9:.4f}")
+            print(f"Val DDF Loss: \n\tloss t1: {ddf_loss_1:.4f}\n\tloss t2: {ddf_loss_2:.4f}\n\tloss t3: {ddf_loss_3:.4f}\n\tloss t4: {ddf_loss_4:.4f}\n\tloss t5: {ddf_loss_5:.4f}\n\tloss t6: {ddf_loss_6:.4f}\n\tloss t7: {ddf_loss_7:.4f}\n\tloss t8: {ddf_loss_8:.4f}\n\tloss t9: {ddf_loss_9:.4f}")

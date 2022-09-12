@@ -38,7 +38,7 @@ def get_tumor_location(nrrd_file_path,real_ddf_file_path,fake_ddf_file_path):
     tumor_torch =  torch.tensor(tumor_img.numpy()).cuda().unsqueeze(dim=0).unsqueeze(dim=0)
 
     loc_before = getLoc(tumor_img.numpy())
-    print(f"\t\t-> Tumor Locaation Before Warp {loc_before}")
+    print(f"\t\t-> Tumor Location Before Warp {loc_before}")
 
     # Do Registration
 

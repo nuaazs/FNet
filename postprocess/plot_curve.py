@@ -6,6 +6,7 @@ import seaborn as sns
 sns.set_theme(style="whitegrid")
 from utils.tumor import get_tumor_location
 from IPython import embed
+from cfg import EPOCH
 
 def get_df(lung_real,lung_fake):
     output_list = []
@@ -72,8 +73,8 @@ def plot_volume(lung_real,lung_fake):
     return lung_real,lung_fake
 
 if __name__ == "__main__":
-    left_fake = np.load("/mnt/zhaosheng/FNet/postprocess/fake_{EPOCH}.npy",allow_pickle=True)
-    left_real = np.load("/mnt/zhaosheng/FNet/postprocess/real_{EPOCH}.npy",allow_pickle=True)
+    left_fake = np.load(f"/mnt/zhaosheng/FNet/postprocess/fake_{EPOCH}.npy",allow_pickle=True)
+    left_real = np.load(f"/mnt/zhaosheng/FNet/postprocess/real_{EPOCH}.npy",allow_pickle=True)
     real_data,fake_data = plot_volume(left_real,left_fake)
     # embed()
     

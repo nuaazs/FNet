@@ -78,8 +78,8 @@ def getDataLoader(batch_size=1,num_workers=5,istry=False,mode="train",ddf_prefix
         train_files, val_files = data_dicts[:10], data_dicts[-10:]
     else:
         total_length = len(data_inputs)
-        train_files, val_files = data_dicts[:-1*int(total_length/5)], data_dicts[-1*int(total_length/5):]
-        # train_files, val_files = data_dicts,data_dicts[-1*int(total_length/5):]
+        #train_files, val_files = data_dicts[:-1*int(total_length/5)], data_dicts[-1*int(total_length/5):]
+        train_files, val_files = data_dicts,data_dicts[-1*int(total_length/5):]
         print(f"Total data: {total_length} patients. Used {total_length-int(total_length/5)} for train and {int(total_length/5)} for test.")
     train_transforms = Compose(
         [

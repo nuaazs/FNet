@@ -89,5 +89,5 @@ if __name__ == '__main__':
 
     fake_result_all = np.array(fake_result_all)
     real_result_all = np.array(real_result_all)
-    np.save("real_{EPOCH}",real_result_all)
-    np.save("fake_{EPOCH}",fake_result_all)
+    np.save(f"real_{EPOCH}",real_result_all)
+    np.save(f"fake_{EPOCH}",fake_result_all)
