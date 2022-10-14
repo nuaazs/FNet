@@ -35,9 +35,8 @@ def getDataLoader(
     num_workers=5,
     istry=False,
     mode="train",
-    ddf_prefix="49",
+    img_dir="/mnt/zhaosheng/4dct/output",
     ddf_dir="/mnt/zhaosheng/FNet/data/ddfs",
-    img_dir="/mnt/zhaosheng/4dct/resampled",
 ):
 
     data_inputs_reample = []
@@ -52,7 +51,7 @@ def getDataLoader(
             add = True
             for tt in range(10):
                 if not os.path.exists(
-                    os.path.join(img_dir, f"{item}_t{tt}_resampled.nii")
+                    os.path.join(img_dir, f"{item}_t{tt}.nii")
                 ):
                     add = False
             if add:
@@ -60,25 +59,16 @@ def getDataLoader(
 
     data_dicts = [
         {
-            "t0_image": os.path.join(img_dir, f"{idx}_t0_resampled.nii"),
-            "t1_image": os.path.join(img_dir, f"{idx}_t1_resampled.nii"),
-            "t2_image": os.path.join(img_dir, f"{idx}_t2_resampled.nii"),
-            "t3_image": os.path.join(img_dir, f"{idx}_t3_resampled.nii"),
-            "t4_image": os.path.join(img_dir, f"{idx}_t4_resampled.nii"),
-            "t5_image": os.path.join(img_dir, f"{idx}_t5_resampled.nii"),
-            "t6_image": os.path.join(img_dir, f"{idx}_t6_resampled.nii"),
-            "t7_image": os.path.join(img_dir, f"{idx}_t7_resampled.nii"),
-            "t8_image": os.path.join(img_dir, f"{idx}_t8_resampled.nii"),
-            "t9_image": os.path.join(img_dir, f"{idx}_t9_resampled.nii"),
-            "ddf1_image": os.path.join(ddf_dir, f"{ddf_prefix}_{idx}_1_0.nii"),
-            "ddf2_image": os.path.join(ddf_dir, f"{ddf_prefix}_{idx}_2_0.nii"),
-            "ddf3_image": os.path.join(ddf_dir, f"{ddf_prefix}_{idx}_3_0.nii"),
-            "ddf4_image": os.path.join(ddf_dir, f"{ddf_prefix}_{idx}_4_0.nii"),
-            "ddf5_image": os.path.join(ddf_dir, f"{ddf_prefix}_{idx}_5_0.nii"),
-            "ddf6_image": os.path.join(ddf_dir, f"{ddf_prefix}_{idx}_6_0.nii"),
-            "ddf7_image": os.path.join(ddf_dir, f"{ddf_prefix}_{idx}_7_0.nii"),
-            "ddf8_image": os.path.join(ddf_dir, f"{ddf_prefix}_{idx}_8_0.nii"),
-            "ddf9_image": os.path.join(ddf_dir, f"{ddf_prefix}_{idx}_9_0.nii"),
+            "t0_image": os.path.join(img_dir, f"{idx}_t0.nii"),
+            "t1_image": os.path.join(img_dir, f"{idx}_t1.nii"),
+            "t2_image": os.path.join(img_dir, f"{idx}_t2.nii"),
+            "t3_image": os.path.join(img_dir, f"{idx}_t3.nii"),
+            "t4_image": os.path.join(img_dir, f"{idx}_t4.nii"),
+            "t5_image": os.path.join(img_dir, f"{idx}_t5.nii"),
+            "t6_image": os.path.join(img_dir, f"{idx}_t6.nii"),
+            "t7_image": os.path.join(img_dir, f"{idx}_t7.nii"),
+            "t8_image": os.path.join(img_dir, f"{idx}_t8.nii"),
+            "t9_image": os.path.join(img_dir, f"{idx}_t9.nii"),
             "pid": f"{idx}",
         }
         for idx in sorted(data_inputs)
@@ -107,15 +97,6 @@ def getDataLoader(
                     "t7_image",
                     "t8_image",
                     "t9_image",
-                    "ddf1_image",
-                    "ddf2_image",
-                    "ddf3_image",
-                    "ddf4_image",
-                    "ddf5_image",
-                    "ddf6_image",
-                    "ddf7_image",
-                    "ddf8_image",
-                    "ddf9_image",
                 ],
             ),
             AddChanneld(
@@ -163,15 +144,6 @@ def getDataLoader(
                     "t7_image",
                     "t8_image",
                     "t9_image",
-                    "ddf1_image",
-                    "ddf2_image",
-                    "ddf3_image",
-                    "ddf4_image",
-                    "ddf5_image",
-                    "ddf6_image",
-                    "ddf7_image",
-                    "ddf8_image",
-                    "ddf9_image",
                 ],
             ),
         ]
@@ -209,6 +181,4 @@ if __name__ == "__main__":
     train_loader, val_loader = getDataLoader(batch_size=1, num_workers=0, istry=True)
     for batch_data in train_loader:
         t0_image = batch_data["t0_image"].cuda()
-        ddf1 = batch_data["ddf1_image"].cuda()
         print(t0_image.shape)
-        print(ddf1.shape)

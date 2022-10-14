@@ -2,7 +2,7 @@ from monai.networks.blocks import Warp
 import monai
 import torch
 import torch.nn as nn
-from backbone.cbamunet import CBAMUNet
+from cbamunet import CBAMUNet
 
 
 class FNet(nn.Module):
@@ -145,17 +145,6 @@ class FNet(nn.Module):
         )
         self.warp_layer = Warp()
 
-        # self.u01 = monai.networks.nets.AttentionUnet(spatial_dims=3, in_channels=1, out_channels=3, channels=(32, 64, 128, 256, 32), strides=(2,2,2,2), kernel_size=3, up_kernel_size=3, dropout=0.0)
-        # self.u02 = monai.networks.nets.AttentionUnet(spatial_dims=3, in_channels=2, out_channels=3, channels=(32, 64, 128, 256, 32), strides=(2,2,2,2), kernel_size=3, up_kernel_size=3, dropout=0.0)
-        # self.u03 = monai.networks.nets.AttentionUnet(spatial_dims=3, in_channels=2, out_channels=3, channels=(32, 64, 128, 256, 32), strides=(2,2,2,2), kernel_size=3, up_kernel_size=3, dropout=0.0)
-        # self.u04 = monai.networks.nets.AttentionUnet(spatial_dims=3, in_channels=2, out_channels=3, channels=(32, 64, 128, 256, 32), strides=(2,2,2,2), kernel_size=3, up_kernel_size=3, dropout=0.0)
-        # self.u05 = monai.networks.nets.AttentionUnet(spatial_dims=3, in_channels=2, out_channels=3, channels=(32, 64, 128, 256, 32), strides=(2,2,2,2), kernel_size=3, up_kernel_size=3, dropout=0.0)
-        # self.u06 = monai.networks.nets.AttentionUnet(spatial_dims=3, in_channels=2, out_channels=3, channels=(32, 64, 128, 256, 32), strides=(2,2,2,2), kernel_size=3, up_kernel_size=3, dropout=0.0)
-        # self.u07 = monai.networks.nets.AttentionUnet(spatial_dims=3, in_channels=2, out_channels=3, channels=(32, 64, 128, 256, 32), strides=(2,2,2,2), kernel_size=3, up_kernel_size=3, dropout=0.0)
-        # self.u08 = monai.networks.nets.AttentionUnet(spatial_dims=3, in_channels=2, out_channels=3, channels=(32, 64, 128, 256, 32), strides=(2,2,2,2), kernel_size=3, up_kernel_size=3, dropout=0.0)
-        # self.u09 = monai.networks.nets.AttentionUnet(spatial_dims=3, in_channels=1, out_channels=3, channels=(32, 64, 128, 256, 32), strides=(2,2,2,2), kernel_size=3, up_kernel_size=3, dropout=0.0)
-        # self.warp_layer = Warp()
-
     def forward(self, input_images):
         t0 = input_images[:, 0, :, :, :]
         t0 = torch.unsqueeze(t0, 1)
@@ -183,26 +172,8 @@ class FNet(nn.Module):
         ddf5 = (ddf5_1 + ddf5_2) / 2
         image5 = self.warp_layer(t0, ddf5)
 
-        return (
-            ddf1,
-            ddf2,
-            ddf3,
-            ddf4,
-            ddf5,
-            ddf6,
-            ddf7,
-            ddf8,
-            ddf9,
-            image1,
-            image2,
-            image3,
-            image4,
-            image5,
-            image6,
-            image7,
-            image8,
-            image9,
-        )
+        return image1, image2, image3, image4, image5, image6, image7, image8, image9,\
+            ddf1,ddf2,ddf3,ddf4,ddf5,ddf6,ddf7,ddf8,ddf9
 
 
 if __name__ == "__main__":
