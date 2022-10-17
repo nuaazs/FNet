@@ -50,9 +50,7 @@ def getDataLoader(
         if (item not in data_inputs) and (item in data_inputs_reample):
             add = True
             for tt in range(10):
-                if not os.path.exists(
-                    os.path.join(img_dir, f"{item}_t{tt}.nii")
-                ):
+                if not os.path.exists(os.path.join(img_dir, f"{item}_t{tt}.nii")):
                     add = False
             if add:
                 data_inputs.append(item)

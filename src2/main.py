@@ -129,7 +129,7 @@ for epoch in range(args.load, args.load + args.epochs):
             loss_7 = image_loss(image7, batch_data["t7_image"].cuda())
             loss_8 = image_loss(image8, batch_data["t8_image"].cuda())
             loss_9 = image_loss(image9, batch_data["t9_image"].cuda())
-            
+
             ddf_1 = ddf_loss(ddf1, batch_data["ddf1"].cuda())
             ddf_2 = ddf_loss(ddf2, batch_data["ddf2"].cuda())
             ddf_3 = ddf_loss(ddf3, batch_data["ddf3"].cuda())
@@ -261,15 +261,15 @@ for epoch in range(args.load, args.load + args.epochs):
                     _loss_9 += loss_9.item()
 
                     if (epoch + 1) % args.save_npy_interval == 0:
-                        for index,image in enumerate(results,1):
+                        for index, image in enumerate(results, 1):
                             save_nii(
-                                    tensor=image,
-                                    filename=str(epoch)
-                                    + "_"
-                                    + batch_data["pid"][0]
-                                    + f"_t{index}_fake",
-                                    save_npy_path=f"./results/{args.name}/",
-                                )
+                                tensor=image,
+                                filename=str(epoch)
+                                + "_"
+                                + batch_data["pid"][0]
+                                + f"_t{index}_fake",
+                                save_npy_path=f"./results/{args.name}/",
+                            )
 
                 _loss_1 /= step
                 _loss_2 /= step
@@ -311,7 +311,7 @@ for epoch in range(args.load, args.load + args.epochs):
                 writer.add_scalar(
                     "total_loss_val", total_loss_val, global_step=epoch, walltime=None
                 )
-                
+
                 print(
                     f"Val DDF Loss: \n\tloss t1: {_loss_1:.4f}\n\tloss t2: {_loss_2:.4f}\n\tloss t3: {_loss_3:.4f}\n\tloss t4: {_loss_4:.4f}\n\tloss t5: {_loss_5:.4f}\n\tloss t6: {_loss_6:.4f}\n\tloss t7: {_loss_7:.4f}\n\tloss t8: {_loss_8:.4f}\n\tloss t9: {_loss_9:.4f}"
                 )

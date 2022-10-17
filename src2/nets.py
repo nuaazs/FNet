@@ -172,8 +172,26 @@ class FNet(nn.Module):
         ddf5 = (ddf5_1 + ddf5_2) / 2
         image5 = self.warp_layer(t0, ddf5)
 
-        return image1, image2, image3, image4, image5, image6, image7, image8, image9,\
-            ddf1,ddf2,ddf3,ddf4,ddf5,ddf6,ddf7,ddf8,ddf9
+        return (
+            image1,
+            image2,
+            image3,
+            image4,
+            image5,
+            image6,
+            image7,
+            image8,
+            image9,
+            ddf1,
+            ddf2,
+            ddf3,
+            ddf4,
+            ddf5,
+            ddf6,
+            ddf7,
+            ddf8,
+            ddf9,
+        )
 
 
 if __name__ == "__main__":
